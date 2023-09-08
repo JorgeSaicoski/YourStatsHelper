@@ -1,0 +1,20 @@
+# Ignore Node modules globally
+**/node_modules/
+
+# Ignore compiled output globally
+**/dist/
+
+# Environment Variables
+.env
+.env.local
+
+# Ignore .vscode directory globally
+**/.vscode/
+
+# IDE/Editor Files
+.idea/
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+npm-debug.log*
