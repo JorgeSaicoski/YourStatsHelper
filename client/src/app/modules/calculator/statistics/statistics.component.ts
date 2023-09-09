@@ -14,6 +14,9 @@ export class StatisticsComponent {
   range: number | undefined;
   variance: number | undefined;
   standardDeviation: number | undefined;
+  percentile: number | undefined;
+  percentileCalculated = false;
+  calculatedPercentile: number | undefined;
 
   calculateStatistics() {
     const numbers = this.inputNumbers.split(',').map((numStr) => parseFloat(numStr.trim()));
@@ -82,4 +85,21 @@ export class StatisticsComponent {
   calculateStandardDeviation(numbers: number[]): number {
     return Math.sqrt(this.calculateVariance(numbers));
   }
+  calculatePercentile() {
+    const numbers = this.inputNumbers.split(',').map((numStr) => parseFloat(numStr.trim()));
+
+    if (numbers.length === 0 || numbers.some(isNaN) || this.percentile === undefined || this.percentile < 0 || this.percentile > 100) {
+      alert('Invalid input. Please enter valid numbers separated by commas and a valid percentile (0-100).');
+      return;
+    }
+
+    const sortedNumbers = numbers.slice().sort((a, b) => a - b);
+    const percentileIndex = Math.floor((this.percentile / 100) * (sortedNumbers.length - 1));
+
+
+    this.calculatedPercentile = sortedNumbers[percentileIndex];
+
+    this.percentileCalculated = true;
+  }
+
 }

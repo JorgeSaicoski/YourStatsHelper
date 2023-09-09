@@ -19,4 +19,15 @@
         <li>Standard Deviation: {{ standardDeviation }}</li>
       </ul>
     </div>
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700">Enter percentile (0-100):</label>
+      <input [(ngModel)]="percentile" type="number" class="w-full mt-1 p-2 border border-gray-300 rounded-md" placeholder="e.g., 50" />
+    </div>
+    
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-md" (click)="calculatePercentile()">Calculate Percentile</button>
+    
+    <div *ngIf="percentileCalculated" class="mt-4">
+      <p class="text-lg font-semibold">Calculated Percentile:</p>
+      <p>{{ calculatedPercentile }}</p>
+    </div>
   </div>
