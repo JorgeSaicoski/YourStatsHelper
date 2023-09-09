@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { FormsModule } from '@angular/forms';
+import { CalculatorRoutingModule } from './calculator-routing.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    StatisticsComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    CalculatorRoutingModule,
+    FormsModule
   ]
 })
 export class CalculatorModule { }

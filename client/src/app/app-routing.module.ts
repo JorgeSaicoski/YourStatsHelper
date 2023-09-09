@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'calculator',
+    loadChildren: () =>
+      import('./modules/calculator/calculator.module').then((m) => m.CalculatorModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
