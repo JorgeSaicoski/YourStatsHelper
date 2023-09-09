@@ -1,0 +1,25 @@
+<div class="bg-blue-500 min-h-screen flex flex-col justify-center items-center text-white">
+    <div class="text-center" *ngIf="checkIfIsVip(user)">
+        <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user.name }}</h1>
+        <p class="text-gray-600 mb-4">
+            You have until {{ user.expireVipIn }}.
+        </p>
+    </div>
+
+    <div class="mt-8">
+        <h2 class="text-2xl font-semibold mb-4">What You Can Do:</h2>
+        <ul class="list-disc list-inside text-gray-700">
+            <li>Create and solve statistics problems.</li>
+            <li>View your statistics history.</li>
+        </ul>
+    </div>
+
+    <div *ngIf="!checkIfIsVip(user)" class="mt-8">
+        <h2 class="text-2xl font-semibold mb-4">VIP Benefits:</h2>
+        <ul class="list-disc list-inside text-green-600">
+            <li>Access premium statistics resources.</li>
+            <li>Get faster support.</li>
+            <li>Unlock advanced features.</li>
+        </ul>
+    </div>
+</div>

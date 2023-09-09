@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/model/user.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class HomeComponent {
+export class MainComponent {
   user: User = {
     id: '1',
     name: 'John Doe',
