@@ -11,8 +11,25 @@
 # Ignore .vscode directory globally
 **/.vscode/
 
-# IDE/Editor Files
-.idea/
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # Miscellaneous
 .DS_Store
