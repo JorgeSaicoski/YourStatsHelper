@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ./server
+    container_name: stats-helper
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://admin:85hvP5npPj2fi4@db:5432/statshelper
+    depends_on:
+      - db
+    networks:
+      - showroom-network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: statshelper
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 85hvP5npPj2fi4
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/database/data
+
+networks:
+  stats-helper:
+    driver: bridge
