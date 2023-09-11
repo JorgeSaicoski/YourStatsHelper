@@ -1,6 +1,6 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-
+@Entity()
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -11,7 +11,7 @@ export class User {
     @Column({type:'varchar', length: 30})
     username: string
 
-    @Column({type:'varchar', length: 30})
+    @Column({type:'varchar', length: 30, unique: true})
     email: string
 
     @Column({type:'varchar', length: 30})

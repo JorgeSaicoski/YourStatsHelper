@@ -12,7 +12,6 @@ describe('UserController', () => {
       controllers: [UserController],
       providers: [UserService],
       imports: [
-        // Import the TypeOrmModule with the entities and repository
         TypeOrmModule.forRoot({
           type: "postgres",
           host: "localhost",
