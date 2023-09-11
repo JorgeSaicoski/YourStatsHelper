@@ -9,11 +9,11 @@ import { Repository } from 'typeorm';
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-  ){
+  ) {
 
   }
   createUser(createUserDto: CreateUserDto) {
-    const user:User = new User()
+    const user: User = new User()
     user.name = createUserDto.name
     user.email = createUserDto.email
     user.username = createUserDto.username
@@ -26,11 +26,19 @@ export class UserService {
   }
 
   findUser(id: number) {
-    return this.userRepository.query(`'SELECT * FROM "users" WHERE id = ${id}'`);
+    return this.userRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
   }
 
   async updateUser(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.query(`'SELECT * FROM "users" WHERE id = ${id}'`)
+    const user = await this.userRepository.findOne({
+      where: {
+        id: id,
+      },
+    })
     user.name = updateUserDto.name
     user.email = updateUserDto.email
     user.username = updateUserDto.username
