@@ -1,20 +1,30 @@
 
-FROM node:14
+FROM node:16-alpine as builder
 
+ENV NODE_ENV build
 
-WORKDIR /app
+WORKDIR /home/node
 
+COPY package*.json ./
 
-COPY package*
-
-
-RUN npm install
-
+RUN npm ci
 
 COPY . .
 
+RUN npm run build
 
-EXPOSE 3000
+FROM node:16-alpine
 
+ENV NODE_ENV production
 
-CMD ["npm", "run", "start:prod"]
+USER node
+
+WORKDIR /home/node
+
+COPY --from=builder /home/node/package*.json ./
+
+COPY --from=builder /home/node/node_modules/ ./node_modules/
+
+COPY --from=builder /home/node/dist/ ./dist/
+
+CMD ["node", "dist/main.js"]

@@ -7,6 +7,7 @@
 # Environment Variables
 .env
 .env.local
+**/constants**
 
 # Ignore .vscode directory globally
 **/.vscode/

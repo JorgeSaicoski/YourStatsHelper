@@ -2,7 +2,6 @@ import { IsOptional, IsString, MinLength, IsEmail, IsNotEmpty, IsDate } from "cl
 
 export class CreateUserDto {
     @IsString()
-    @IsOptional()
     @MinLength(2, {message: "Name must have at least 2 characters."})
     name: string;
 

@@ -16,4 +16,7 @@ export class User {
 
     @Column({type:'varchar', length: 30})
     password: string
+
+    @Column({ type: 'date', nullable: true })
+    expireVipIn: Date;
 }

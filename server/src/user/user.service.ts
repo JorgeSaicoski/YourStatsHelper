@@ -12,28 +12,36 @@ export class UserService {
   ) {
 
   }
-  createUser(createUserDto: CreateUserDto) {
+  async createUser(createUserDto: CreateUserDto):Promise<User | undefined> {
     const user: User = new User()
     user.name = createUserDto.name
     user.email = createUserDto.email
     user.username = createUserDto.username
     user.password = createUserDto.password
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 
-  findAllUsers() {
-    return this.userRepository.find();
+  async findAllUsers():Promise<User [] | undefined> {
+    return await this.userRepository.find();
   }
 
-  findUser(id: number) {
-    return this.userRepository.findOne({
+  async findUser(id: number):Promise<User | undefined> {
+    return await this.userRepository.findOne({
       where: {
         id: id,
       },
     });
   }
 
-  async updateUser(id: number, updateUserDto: UpdateUserDto) {
+  async findUserByUsername(username: string):Promise<User | undefined> {
+    return await this.userRepository.findOne({
+      where: {
+        username: username,
+      },
+    });
+  }
+
+  async updateUser(id: number, updateUserDto: UpdateUserDto):Promise<User | undefined> {
     const user = await this.userRepository.findOne({
       where: {
         id: id,
@@ -43,10 +51,10 @@ export class UserService {
     user.email = updateUserDto.email
     user.username = updateUserDto.username
     user.password = updateUserDto.password
-    return this.userRepository.save(user)
+    return await this.userRepository.save(user)
   }
 
-  removeUser(id: number) {
-    return this.userRepository.delete(id);
+  async removeUser(id: number) {
+    return await this.userRepository.delete(id);
   }
 }

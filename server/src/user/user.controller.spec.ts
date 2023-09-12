@@ -19,8 +19,8 @@ describe('UserController', () => {
           username: "admin",
           password: "85hvP5npPj2fi4",
           database: "statshelper",
-          entities: [User], // Add your entity here
-          synchronize: true, // Should be true for testing (make sure to change for production)
+          entities: [User], 
+          synchronize: true, 
         }),
         TypeOrmModule.forFeature([User]), // Add your entity here as well
       ],
