@@ -8,6 +8,7 @@
 .env
 .env.local
 **/constants**
+**/environments**
 
 # Ignore .vscode directory globally
 **/.vscode/

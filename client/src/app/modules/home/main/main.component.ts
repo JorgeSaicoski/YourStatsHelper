@@ -10,6 +10,7 @@ export class MainComponent {
   user: User = {
     id: '1',
     name: 'John Doe',
+    username: 'John Doe',
     email: 'johndoe@example.com',
     expireVipIn: new Date('2023-12-31')
   };
