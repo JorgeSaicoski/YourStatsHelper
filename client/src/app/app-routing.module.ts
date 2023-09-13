@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/calculator/calculator.module').then((m) => m.CalculatorModule),
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
