@@ -4,6 +4,7 @@ import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { environment } from '@env';
 import { TokenService } from './token.service';
 import { User } from '@model/user.model';
+import { UsersService } from '@service/users/users.service';
 
 
 @Injectable({
@@ -14,17 +15,19 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private userService: UsersService
   ) { }
 
   login(username: string, password: string): Observable<any> {
     const signInDto = { username, password };
     return this.http.post(`${this.backendUrl}/login`, signInDto).pipe(
       map((response: any) => {
-        const token = response.token;
+        const token = response.access_token;
         if (token) {
-          this.tokenService.setToken(token)
-          return response
+          const userId = this.tokenService.setToken(token)
+          this.userService.setCurrentUserByID(userId)
+          return response;
         }
         throw new Error("Invalid response format")
       }),
@@ -40,7 +43,8 @@ export class AuthService {
       map((response: any) => {
         const token = response.access_token;
         if (token) {
-          this.tokenService.setToken(token);
+          const userId = this.tokenService.setToken(token)
+          this.userService.setCurrentUserByID(userId)
           return response;
         }
         throw new Error('Invalid response format'); // Handle unexpected response
@@ -53,6 +57,7 @@ export class AuthService {
   }
   logout() {
     this.tokenService.removeToken();
+    this.userService.setCurrentUser(null)
   }
 }
 

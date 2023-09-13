@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
+import { environment } from '@env';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-  private readonly TOKEN_KEY = 'access_token';
+  private readonly TOKEN_KEY = environment.currentSesion;
 
-  constructor() {}
+  constructor(private jwtHelper: JwtHelperService) {}
 
 
-  setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+  setToken(token: string): number {
+    localStorage.setItem(this.TOKEN_KEY, token);  
+    return this.jwtHelper.decodeToken(token).sub
   }
 
 
