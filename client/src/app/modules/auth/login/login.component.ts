@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@service/auth/auth.service';
 
 @Component({
@@ -7,23 +9,27 @@ import { AuthService } from '@service/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = "";
-  password: string = "";
-  
-  constructor(private authService: AuthService){}
+  loginForm!: FormGroup;
+  errorMessage = '';
 
-  onSubmit(): void {
+  constructor(
+    private formBuilder: FormBuilder,
+    public authService:AuthService,
+    private router: Router
+  ) {}
 
-    this.authService.login(this.username, this.password).subscribe(
-      
-      (response:any)=>{
-        
-      },
-      (err:any) =>{
-        
-      }
-      
-    )
+  ngOnInit():void{
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    })
+  }
+
+  onSubmit():void{
+
+    this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(() => {
+      this.router.navigate(['/home/welcome']);
+    });
 
   }
 
