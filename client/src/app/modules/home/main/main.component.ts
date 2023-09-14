@@ -24,15 +24,10 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const currentUser = this.userService.getCurrentUser();
+    this.userService.getCurrentUser();
     this.userService.currentUser.subscribe((user: User) => {
       this.user = user;
     });
-
-  }
-  checkIfIsVip(user: User): void {
-    if (user.expireVipIn && user.expireVipIn >= new Date()) {
-      this.isVip = true; 
-    }
+    this.isVip = this.userService.checkVipIsValid()
   }
 }

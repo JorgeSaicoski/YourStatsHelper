@@ -1,27 +1,76 @@
-# Client
+# Project Name
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+**Description**: Yours Stats Helper front-end.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. [Installation](#installation)
+2. [Configuration](#configuration)
+3. [Usage](#usage)
+4. [Features](#features)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Provide instructions on how to set up your Angular project locally. Include any prerequisites and installation steps. For example:
 
-## Build
+```bash
+# Clone the repository
+git clone https://github.com/JorgeSaicoski/YourStatsHelper.git
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Navigate to the project folder
+cd YourStatsHelper/client
 
-## Running unit tests
+# Install dependencies
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Configuration
 
-## Running end-to-end tests
+Create a environments folder and a `environments.ts` file:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```typescript
+export const environment = {
+    production: false,
+    currentSession: 'current_session',
+    api_url: "http://localhost:3000/"
+};
+```
 
-## Further help
+## Usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Provide instructions on how to use your Angular project. Explain its main functionality and how users can interact with it. You can also include code examples or screenshots to illustrate the usage. For example:
+
+1. **Login**: Users can log in using their credentials. The project saves session information and cookies.
+
+2. **Static Calculations**: The project provides statics calculation functionality.
+
+3. **To-Do List**: 
+
+   - Implement the "Buy VIP" feature.
+   - Add probability calculations.
+   - Enhance security features, including password encryption.
+
+## Features
+
+
+- User authentication and session management.
+- Statics calculations.
+- Upcoming features:
+  - "Buy VIP" functionality.
+  - Probability calculations.
+  - Improved security features.
+
+## Contributing
+
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Create a pull request to merge your changes into the main project.
+
+
+
+

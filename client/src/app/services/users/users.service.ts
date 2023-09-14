@@ -37,13 +37,12 @@ export class UsersService {
       }),
     );
   }
-  public getCurrentUser(): User | null {
+  public getCurrentUser(): void {
     
     const id = this.tokenService.getIdByToken()
     if (id){
       this.setCurrentUserByID(id)
     }
-    return this.currentUserSubject.value;
   }
 
   public setCurrentUser(user: User | null): void {
@@ -59,10 +58,18 @@ export class UsersService {
     });
   }
 
-  public checkVipIsValid(): boolean{
-    const currentUser = this.getCurrentUser
-    console.log(currentUser)
-    return true
+  public checkVipIsValid(): boolean {
+    const currentUser = this.currentUserSubject.value; // Get the current user from the BehaviorSubject
+  
+    if (currentUser && currentUser.expireVipIn) {
+      const expireDate = new Date(currentUser.expireVipIn);
+      const currentDate = new Date();
+      
+      // Check if the current date is before or equal to the VIP expiration date
+      return currentDate <= expireDate;
+    }
+  
+    return false; // Return false if there's no current user or no VIP expiration date
   }
 
 }
