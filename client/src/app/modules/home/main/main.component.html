@@ -1,4 +1,4 @@
-<div class="bg-blue-500 min-h-screen flex flex-col justify-center items-center text-white">
+<div *ngIf="user&&user.name" class="bg-blue-500 min-h-screen flex flex-col justify-center items-center text-white">
     <div class="text-center" *ngIf="checkIfIsVip(user)">
         <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user.name }}</h1>
         <p class="text-gray-600 mb-4">
@@ -21,6 +21,8 @@
             <li>Get faster support.</li>
             <li>Unlock advanced features.</li>
         </ul>
+    </div>
+
     </div>
     <a href="/calculator" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded mr-4">
         Go do some statistics

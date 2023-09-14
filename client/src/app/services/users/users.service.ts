@@ -22,6 +22,7 @@ export class UsersService {
 
 
   public getUserByID(id: number): Observable<User> {
+    console.log("get")
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<User>(url).pipe(
       map((user: User) => {
@@ -41,8 +42,10 @@ export class UsersService {
   }
 
   public setCurrentUserByID(id: number): void {
+    console.log("set")
     this.getUserByID(id).subscribe((user: User | null) => {
       if (user) {
+        console.log(user)
         this.currentUserSubject.next(user);
       }
     });

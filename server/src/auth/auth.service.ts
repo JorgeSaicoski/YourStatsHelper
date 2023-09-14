@@ -12,14 +12,11 @@ export class AuthService {
   async signIn(username: string, password: string) {
     try {
       const user = await this.usersService.findUserByUsername(username);
-
       if (!user || user.password !== password) {
         throw new UnauthorizedException('Invalid credentials');
       }
-
       const payload = { sub: user.id, username: user.username, expireVipIn: user.expireVipIn };
       const access_token = await this.jwtService.signAsync(payload);
-      console.log({ "access_token": access_token })
       return { "access_token": access_token };
     } catch (err) {
       throw new UnauthorizedException('Invalid credentials');
@@ -32,7 +29,6 @@ export class AuthService {
       user = await this.usersService.createUser(user);
       const payload = { sub: user.id, username: user.username, expireVipIn: user.expireVipIn };
       const access_token = await this.jwtService.signAsync(payload);
-      console.log(access_token)
 
       return { access_token };
     } catch (err) {

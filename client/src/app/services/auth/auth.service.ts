@@ -21,6 +21,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     const signInDto = { username, password };
+
     return this.http.post(`${this.backendUrl}/login`, signInDto).pipe(
       map((response: any) => {
         const token = response.access_token;

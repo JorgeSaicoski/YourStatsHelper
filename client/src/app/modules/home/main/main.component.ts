@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from '@service/users/users.service';
 import { User } from 'src/app/model/user.model';
 
 @Component({
@@ -7,18 +8,25 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
+
   user: User = {
-    id: '1',
-    name: 'John Doe',
-    username: 'John Doe',
-    email: 'johndoe@example.com',
-    expireVipIn: new Date('2023-12-31')
+    id: '',
+    name: '',
+    username: '',
+    email: '',
+
   };
 
-  constructor() { }
+  constructor(
+    private userService: UsersService
+  ) { }
 
   ngOnInit(): void {
-
+    const currentUser = this.userService.getCurrentUser();
+    if (currentUser !== null) {
+      this.user = currentUser;
+    } 
+    console.log(this.user)
   }
   checkIfIsVip(user: User): boolean {
     if (user.expireVipIn && user.expireVipIn >= new Date()) {
