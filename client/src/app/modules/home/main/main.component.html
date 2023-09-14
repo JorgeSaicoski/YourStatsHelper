@@ -1,30 +1,40 @@
-<div *ngIf="user&&user.name" class="bg-blue-500 min-h-screen flex flex-col justify-center items-center text-white">
-    <div class="text-center" *ngIf="checkIfIsVip(user)">
-        <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user.name }}</h1>
-        <p class="text-gray-600 mb-4">
-            You have until {{ user.expireVipIn }}.
-        </p>
+<div class="bg-blue-500 min-h-screen flex flex-col justify-center items-center text-white">
+    <div *ngIf="user?.name" class="text-center">
+      <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user.name }}</h1>
+      <p *ngIf="isVip" class="text-gray-600 mb-4">You have until {{ user.expireVipIn }}.</p>
     </div>
-
+  
     <div class="mt-8">
-        <h2 class="text-2xl font-semibold mb-4">What You Can Do:</h2>
-        <ul class="list-disc list-inside text-gray-700">
-            <li>Create and solve statistics problems.</li>
-            <li>View your statistics history.</li>
-        </ul>
+      <h2 class="text-2xl font-semibold mb-4">What You Can Do:</h2>
+      <ul class="list-disc list-inside text-gray-700">
+        <li>Create and solve statistics problems.</li>
+        <li *ngIf="user?.name">Ask for help.</li>
+      </ul>
+    </div>
+  
+  
+    <div *ngIf="!user?.name" class="mt-8">
+      <ul class="list-disc list-inside text-yellow-600">
+        <li>Create a Free Account</li>
+        <li>Get more resources</li>
+        <li>Unlock advanced features.</li>
+      </ul>
     </div>
 
-    <div *ngIf="!checkIfIsVip(user)" class="mt-8">
+    <div *ngIf="!isVip">
         <h2 class="text-2xl font-semibold mb-4">VIP Benefits:</h2>
-        <ul class="list-disc list-inside text-green-600">
-            <li>Access premium statistics resources.</li>
-            <li>Get faster support.</li>
-            <li>Unlock advanced features.</li>
-        </ul>
+        <li>Support.</li>
+        <li>Get more resources.</li>
+        <li>Unlock advanced features.</li>
+        <li>Unlock detail about all calculations.</li>
     </div>
-
-    </div>
-    <a href="/calculator" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded mr-4">
-        Go do some statistics
+  
+    <a href="/auth/register" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded">
+      Sign Up
     </a>
-</div>
+  
+    <a href="/calculator" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded mt-4">
+      Go do some statistics
+    </a>
+  </div>
+  

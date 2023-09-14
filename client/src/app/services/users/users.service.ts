@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { environment } from "@env";
 import { User } from "@model/user.model";
+import { TokenService } from "@service/auth/token.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,10 @@ export class UsersService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private tokenService: TokenService,
+  ) {
     this.currentUserSubject = new BehaviorSubject<any>(null);
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -34,6 +38,11 @@ export class UsersService {
     );
   }
   public getCurrentUser(): User | null {
+    
+    const id = this.tokenService.getIdByToken()
+    if (id){
+      this.setCurrentUserByID(id)
+    }
     return this.currentUserSubject.value;
   }
 
@@ -45,10 +54,15 @@ export class UsersService {
     console.log("set")
     this.getUserByID(id).subscribe((user: User | null) => {
       if (user) {
-        console.log(user)
         this.currentUserSubject.next(user);
       }
     });
+  }
+
+  public checkVipIsValid(): boolean{
+    const currentUser = this.getCurrentUser
+    console.log(currentUser)
+    return true
   }
 
 }

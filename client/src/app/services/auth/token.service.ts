@@ -21,6 +21,15 @@ export class TokenService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  getIdByToken(): number | null {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (token){
+      return this.jwtHelper.decodeToken(token).sub
+    }
+    return null    
+  }
+  
+
 
   removeToken(): void {
     localStorage.removeItem(this.TOKEN_KEY);

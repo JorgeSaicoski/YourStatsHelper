@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@service/users/users.service';
 import { User } from 'src/app/model/user.model';
 
@@ -7,7 +7,9 @@ import { User } from 'src/app/model/user.model';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+
+  isVip:boolean = false
 
   user: User = {
     id: '',
@@ -23,15 +25,14 @@ export class MainComponent {
 
   ngOnInit(): void {
     const currentUser = this.userService.getCurrentUser();
-    if (currentUser !== null) {
-      this.user = currentUser;
-    } 
-    console.log(this.user)
+    this.userService.currentUser.subscribe((user: User) => {
+      this.user = user;
+    });
+
   }
-  checkIfIsVip(user: User): boolean {
+  checkIfIsVip(user: User): void {
     if (user.expireVipIn && user.expireVipIn >= new Date()) {
-      return true; 
+      this.isVip = true; 
     }
-    return false; 
   }
 }
