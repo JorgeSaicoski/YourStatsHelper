@@ -2,11 +2,11 @@
   <div class="container mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold text-gray-800">Purchase a VIP Account</h1>
     <p class="text-gray-600">Get access to exclusive features and benefits with a VIP account.</p>
-    <div class="flex flex-col gap-4">
+    <form (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
       <div class="flex items-center justify-between">
-        <label class="text-gray-700">Plan:</label>
-        <select [(ngModel)]="selectedPlan" (change)="onChange()" class="w-full rounded-md border-gray-300">
-          <option *ngFor="let plan of plans" value="{{plan.id}}">{{plan.name}}</option>
+        <label for="plan" class="text-gray-700">Plan:</label>
+        <select id="plan" name="plan" [(ngModel)]="selectedPlan" (change)="onChange()" class="w-full rounded-md border-gray-300">
+          <option *ngFor="let plan of plans" [value]="plan.id">{{plan.name}}</option>
         </select>
       </div>
       <div class="flex items-center justify-between">
@@ -21,8 +21,8 @@
           <li>Early access to new features</li>
         </ul>
       </div>
-    </div>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Purchase VIP Account</button>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Purchase VIP Account</button>
+    </form>
   </div>
-  
 </div>
+

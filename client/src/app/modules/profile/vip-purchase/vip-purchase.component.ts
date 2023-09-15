@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Plan } from '@model/plan';
 import { UsersService } from '@service/users/users.service';
 
@@ -36,7 +35,6 @@ export class VipPurchaseComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder,
     private userService: UsersService
   ) { }
 
@@ -55,7 +53,7 @@ export class VipPurchaseComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.currentPlan)
+    console.log(this.currentPlan())
   }
 
 
