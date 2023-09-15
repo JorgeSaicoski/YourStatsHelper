@@ -24,7 +24,6 @@ export class AuthService {
   }
 
   async register(user: User) {
-    console.log(user)
     try {
       user = await this.usersService.createUser(user);
       const payload = { sub: user.id, username: user.username, expireVipIn: user.expireVipIn };

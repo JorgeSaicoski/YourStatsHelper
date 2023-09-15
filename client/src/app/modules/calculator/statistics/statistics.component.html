@@ -1,17 +1,17 @@
-<div class="p-4">
+<div class="p-4 bg-accent min-h-screen">
   <h2 class="text-2xl font-semibold mb-4">Statistics Calculator</h2>
 
   <div class="mb-4">
-    <label class="block text-sm font-medium text-gray-700">Enter numbers (comma-separated):</label>
-    <input [(ngModel)]="inputNumbers" class="w-full mt-1 p-2 border border-gray-300 rounded-md"
+    <label class="block text-sm font-medium text-neutral">Enter numbers (comma-separated):</label>
+    <input [(ngModel)]="inputNumbers" class="w-full mt-1 p-2 border border-neutral rounded-md"
       placeholder="e.g., 1, 2, 3, 4, 5" />
   </div>
 
-  <button class="bg-blue-500 text-white px-4 py-2 rounded-md" (click)="calculateStatistics()">Calculate</button>
+  <button class="bg-primary text-neutral px-4 py-2 rounded-md" (click)="calculateStatistics()">Calculate</button>
 
   <div *ngIf="statisticsCalculated" class="mt-4">
     <p class="text-lg font-semibold">Statistics:</p>
-    <ul class="list-disc ml-6">
+    <ul class="list-disc ml-6 text-neutral">
       <li>Mean: {{ mean }}</li>
       <li>Median: {{ median }}</li>
       <li>Mode: {{ mode }}</li>
@@ -21,19 +21,19 @@
     </ul>
   </div>
   <div class="mb-4">
-    <label class="block text-sm font-medium text-gray-700">Enter percentile (0-100):</label>
-    <input [(ngModel)]="percentile" type="number" class="w-full mt-1 p-2 border border-gray-300 rounded-md"
+    <label class="block text-sm font-medium text-neutral">Enter percentile (0-100):</label>
+    <input [(ngModel)]="percentile" type="number" class="w-full mt-1 p-2 border border-neutral rounded-md"
       placeholder="e.g., 50" />
   </div>
 
-  <button class="bg-blue-500 text-white px-4 py-2 rounded-md" (click)="calculatePercentile()">Calculate
+  <button class="bg-primary text-neutral px-4 py-2 rounded-md" (click)="calculatePercentile()">Calculate
     Percentile</button>
 
-  <div *ngIf="percentileCalculated" class="mt-4">
+  <div *ngIf="percentileCalculated" class="mt-4 mb-4 text-neutral">
     <p class="text-lg font-semibold">Calculated Percentile:</p>
     <p>{{ calculatedPercentile }}</p>
   </div>
-  <a href="/home/main" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded mr-4">
+  <a href="/home/main" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
     Go back
   </a>
 </div>

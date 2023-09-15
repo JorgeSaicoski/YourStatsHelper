@@ -1,12 +1,12 @@
-<div class="bg-blue-500 min-h-screen flex flex-col justify-center items-center text-white">
+<div class="bg-primary min-h-screen flex flex-col justify-center items-center text-accent">
     <div *ngIf="user?.name" class="text-center">
       <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user.name }}</h1>
-      <p *ngIf="isVip" class="text-gray-600 mb-4">You have until {{ user.expireVipIn }}.</p>
+      <p *ngIf="isVip" class="mb-4">You have until {{ user.expireVipIn }}.</p>
     </div>
   
     <div class="mt-8">
       <h2 class="text-2xl font-semibold mb-4">What You Can Do:</h2>
-      <ul class="list-disc list-inside text-gray-700">
+      <ul class="list-disc list-inside ">
         <li>Create and solve statistics problems.</li>
         <li *ngIf="user?.name">Ask for help.</li>
       </ul>
@@ -14,7 +14,8 @@
   
   
     <div *ngIf="!user?.name" class="mt-8">
-      <ul class="list-disc list-inside text-yellow-600">
+      <h2 class="text-2xl font-semibold mb-4">What You Should Do:</h2>
+      <ul class="list-disc list-inside">
         <li>Create a Free Account</li>
         <li>Get more resources</li>
         <li>Unlock advanced features.</li>
@@ -29,11 +30,11 @@
         <li>Unlock detail about all calculations.</li>
     </div>
   
-    <a href="/auth/register" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded">
+    <a href="/auth/register" class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded">
       Sign Up
     </a>
   
-    <a href="/calculator" class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded mt-4">
+    <a href="/calculator" class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4">
       Go do some statistics
     </a>
   </div>
