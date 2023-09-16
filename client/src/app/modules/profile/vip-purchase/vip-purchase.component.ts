@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Plan } from '@model/plan';
+import { User } from '@model/user.model';
 import { UsersService } from '@service/users/users.service';
 
 @Component({
@@ -19,7 +20,13 @@ export class VipPurchaseComponent implements OnInit {
       id: 2,
       name: "Six Month",
       days: 180,
-      price: 20
+      price: 18
+    },
+    {
+      id: 3,
+      name: "Year",
+      days: 365,
+      price: 24
     }
   ]
 
@@ -30,7 +37,17 @@ export class VipPurchaseComponent implements OnInit {
     price: 5
   })
 
+  pricePerMonth = signal<Number>(5)
+
   selectedPlan: number = 1
+
+  user: User = {
+    id: 0,
+    name: '',
+    username: '',
+    email: '',
+
+  };
 
 
 
@@ -40,6 +57,10 @@ export class VipPurchaseComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userService.getCurrentUser();
+    this.userService.currentUser.subscribe((user: User) => {
+      this.user = user;
+    });
 
   }
 
@@ -48,12 +69,19 @@ export class VipPurchaseComponent implements OnInit {
     const newPlan = this.plans.find(plan => plan.id === id )
 
     if (newPlan){
+      const pricePerDay = newPlan.price/newPlan.days
+      this.pricePerMonth.set(Math.ceil(pricePerDay*30))
       this.currentPlan.set(newPlan)
     }
   }
 
-  onSubmit(){
-    console.log(this.currentPlan())
+  onSubmit(){    
+    this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
+      (response: any)=>{
+        console.log(response)
+      },
+      (error) => console.log(error)
+    );
   }
 
 

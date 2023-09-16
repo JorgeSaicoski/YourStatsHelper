@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   isVip:boolean = false
 
   user: User = {
-    id: '',
+    id: 0,
     name: '',
     username: '',
     email: '',

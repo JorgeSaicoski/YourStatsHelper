@@ -18,5 +18,5 @@ export class User {
     password: string
 
     @Column({ type: 'date', nullable: true })
-    expireVipIn: Date;
+    expireVipIn: string;
 }

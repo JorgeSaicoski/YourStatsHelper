@@ -12,6 +12,10 @@
       <div class="flex items-center justify-between">
         <label class="text-gray-700">Price:</label>
         <span class="text-gray-800">${{currentPlan().price}}</span>
+        <label class="text-gray-700">Days:</label>
+        <span class="text-gray-800">{{currentPlan().days}}</span>
+        <label class="text-gray-700">Price per Month:</label>
+        <span class="text-gray-800">${{pricePerMonth()}}</span>
       </div>
       <div class="flex items-center justify-between">
         <label class="text-gray-700">Benefits:</label>

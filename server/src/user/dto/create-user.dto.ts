@@ -17,8 +17,5 @@ export class CreateUserDto {
     @MinLength(6, {message: "Password must have at least 6 characters."})
     password: string;
 
-    @IsDate()
-    @IsOptional()
-    expireVipIn?: Date;
 
 }

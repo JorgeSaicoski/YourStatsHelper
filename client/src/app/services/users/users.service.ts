@@ -26,7 +26,6 @@ export class UsersService {
 
 
   public getUserByID(id: number): Observable<User> {
-    console.log("get")
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<User>(url).pipe(
       map((user: User) => {
@@ -37,6 +36,22 @@ export class UsersService {
       }),
     );
   }
+
+  public getUserByIDAndIncreaseVip(id: number, days: number): Observable<User> {
+    console.log("get")
+    const url = `${this.apiUrl}/vip/${id}`;
+    return this.http.patch<User>(url, {days}).pipe(
+      map((user: User) => {
+        if (user&&user.username) {
+          return user;
+        }
+        return null as any;
+      }),
+    );
+  }
+
+
+
   public getCurrentUser(): void {
     
     const id = this.tokenService.getIdByToken()

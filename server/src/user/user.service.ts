@@ -59,20 +59,41 @@ export class UserService {
   }
 
 
-  async findUserAndIncreaseVip(id: number, days:number):Promise<User | undefined> {
-    const now = new Date()
-    const daysInMilliseconds = days * 24 * 60 * 60 * 1000
+  async findUserAndIncreaseVip(id: number, days:any):Promise<User | undefined> {
+
+
     const user = await this.userRepository.findOne({
       where: {
         id: id,
       },
     })
-    if (user?.expireVipIn <= now){
-      user.expireVipIn.setDate(user.expireVipIn.getDate() + daysInMilliseconds)
 
+    const now:Date = new Date()
+    const daysInMilliseconds: number = days.days * 24 * 60 * 60 * 1000
+    let vipExpiration: Date;
+    vipExpiration = new Date();
+
+    
+    console.log("vipExpiration")
+    console.log(vipExpiration)
+
+    console.log(now)
+
+    if (vipExpiration && vipExpiration > now){
+      console.log("1")
+      vipExpiration.setDate(vipExpiration.getDate()+days.days)
+      console.log(vipExpiration)
     } else {
-      user.expireVipIn.setDate(now.getDate()+daysInMilliseconds)
+      console.log("2")
+      console.log(now.getDate() + days.days)
+      vipExpiration.setDate(now.getDate()+ days.days)
+      console.log(vipExpiration)
     }
+    const day = vipExpiration.getDay()
+    const month = vipExpiration.getMonth()+1
+    const year = vipExpiration.getFullYear()
+    console.log(`${year}-${month}-${day}`)
+    user.expireVipIn = `${year}-${month}-${day}`
     console.log(user)
     return await this.userRepository.save(user)
   }
