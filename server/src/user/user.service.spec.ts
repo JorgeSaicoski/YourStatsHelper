@@ -53,4 +53,47 @@ describe('UserService', () => {
       expect(user).toEqual(expectedUser);
     });
   });
+  describe('findUserAndIncreaseVip', () => {
+    it('should increase the vip', async () => {
+
+      const days = 30
+      const daysInMilliseconds = days * 24 * 60 * 60 * 1000
+      const now = new Date
+  
+      const expectedUser = new User();
+      expectedUser.expireVipIn = new Date
+      expectedUser.expireVipIn.setDate(now.getDate() + daysInMilliseconds)
+
+      mockUserRepository.create.mockReturnValue(expectedUser);
+      mockUserRepository.save.mockReturnValue(expectedUser);
+  
+      const user = await userService.findUserAndIncreaseVip(expectedUser.id, days);
+  
+      expect(user.expireVipIn).toEqual(expectedUser.expireVipIn);
+    });
+
+    it('should increase the vip even he have id expired', async () => {
+
+      const days = 30;
+      const daysInMilliseconds = days * 24 * 60 * 60 * 1000;
+      const now = new Date();
+    
+      
+      const expectedUser = new User();
+      const expiredDate = new Date(now.getTime() - 1); 
+      expectedUser.expireVipIn = expiredDate;
+    
+      mockUserRepository.create.mockReturnValue(expectedUser);
+      mockUserRepository.save.mockReturnValue(expectedUser);
+    
+      
+      const user = await userService.findUserAndIncreaseVip(expectedUser.id, days);
+    
+      
+      const expectedVipExpiration = new Date(now.getTime() + daysInMilliseconds);
+    
+      
+      expect(user.expireVipIn).toEqual(expectedVipExpiration);
+    });
+  });
 });

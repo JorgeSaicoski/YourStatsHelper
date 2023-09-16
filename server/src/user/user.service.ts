@@ -26,12 +26,11 @@ export class UserService {
   }
 
   async findUser(id: number):Promise<User | undefined> {
-    const user = await this.userRepository.findOne({
+    return await this.userRepository.findOne({
       where: {
         id: id,
       },
     })
-    return user;
   }
 
   async findUserByUsername(username: string):Promise<User | undefined> {
@@ -58,4 +57,24 @@ export class UserService {
   async removeUser(id: number) {
     return await this.userRepository.delete(id);
   }
+
+
+  async findUserAndIncreaseVip(id: number, days:number):Promise<User | undefined> {
+    const now = new Date()
+    const daysInMilliseconds = days * 24 * 60 * 60 * 1000
+    const user = await this.userRepository.findOne({
+      where: {
+        id: id,
+      },
+    })
+    if (user?.expireVipIn <= now){
+      user.expireVipIn.setDate(user.expireVipIn.getDate() + daysInMilliseconds)
+
+    } else {
+      user.expireVipIn.setDate(now.getDate()+daysInMilliseconds)
+    }
+    console.log(user)
+    return await this.userRepository.save(user)
+  }
+
 }

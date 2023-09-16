@@ -10,6 +10,10 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@user/*": ["src/user/*"],
+      "@env": ["src/environments/environment.ts"],
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
