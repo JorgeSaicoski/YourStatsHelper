@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { IncreaseVipDTO } from './dto/increase-vip.dto';
 
 @Injectable()
 export class UserService {
@@ -59,25 +60,18 @@ export class UserService {
   }
 
 
-  async findUserAndIncreaseVip(id: number, days:any):Promise<User | undefined> {
+  async findUserAndIncreaseVip(increaseVipDTO: IncreaseVipDTO):Promise<User | undefined> {
 
 
     const user = await this.userRepository.findOne({
       where: {
-        id: id,
+        id: increaseVipDTO.id,
       },
     })
 
     const now:Date = new Date()
     const daysInMilliseconds: number = days.days * 24 * 60 * 60 * 1000
-    let vipExpiration: Date;
-    vipExpiration = new Date();
-
-    
-    console.log("vipExpiration")
-    console.log(vipExpiration)
-
-    console.log(now)
+    let vipExpiration: Date = new Date();
 
     if (vipExpiration && vipExpiration > now){
       console.log("1")
@@ -94,7 +88,6 @@ export class UserService {
     const year = vipExpiration.getFullYear()
     console.log(`${year}-${month}-${day}`)
     user.expireVipIn = `${year}-${month}-${day}`
-    console.log(user)
     return await this.userRepository.save(user)
   }
 
