@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { IncreaseVipDTO } from './dto/increase-vip.dto';
 
 @Controller('user')
 export class UserController {
@@ -28,8 +29,8 @@ export class UserController {
   }
 
   @Patch('vip/:id')
-  vip(@Param('id') id: number, @Body() days: number) {
-    return this.userService.findUserAndIncreaseVip(+id, days);
+  vip(@Param('id') id: number, @Body() increaseVipDTO: IncreaseVipDTO) {
+    return this.userService.findUserAndIncreaseVip(+id, increaseVipDTO);
   }
 
   @Delete(':id')

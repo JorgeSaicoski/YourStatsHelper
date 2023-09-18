@@ -37,10 +37,10 @@ export class UsersService {
     );
   }
 
-  public getUserByIDAndIncreaseVip(id: number, days: number): Observable<User> {
-    console.log("get")
-    const url = `${this.apiUrl}/vip/${id}`;
-    return this.http.patch<User>(url, {days}).pipe(
+  public getUserByIDAndIncreaseVip(body:any): Observable<User> {
+    console.log(body)
+    const url = `${this.apiUrl}/vip/${body.id}`;
+    return this.http.patch<User>(url, {body}).pipe(
       map((user: User) => {
         if (user&&user.username) {
           return user;

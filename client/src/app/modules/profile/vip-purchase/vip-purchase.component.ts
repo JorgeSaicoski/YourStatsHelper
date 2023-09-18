@@ -76,7 +76,7 @@ export class VipPurchaseComponent implements OnInit {
   }
 
   onSubmit(){    
-    this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
+    this.userService.getUserByIDAndIncreaseVip({id: this.user.id, days:this.currentPlan().days}).subscribe(
       (response: any)=>{
         console.log(response)
       },
