@@ -61,8 +61,9 @@ export class UserService {
   }
 
 
-  async findUserAndIncreaseVip(id, body: any): Promise<User | undefined> {
+  async findUserAndIncreaseVip(id, body: IncreaseVipDTO): Promise<User | undefined> {
 
+    console.log(body)
 
 
     const user = await this.userRepository.findOne({
@@ -70,30 +71,24 @@ export class UserService {
         id: id,
       },
     })
-    console.log(user)
 
-    const days = body.body.days
+    const days = body.days
 
 
     const now: Date = new Date()
 
 
     let vipExpiration: Date = user.expireVipIn ? convertStringToDate(user.expireVipIn) : new Date();
-    console.log(vipExpiration, "vip exp")
 
     if (vipExpiration && vipExpiration > now) {
-      console.log(typeof vipExpiration)
       vipExpiration.setDate(vipExpiration.getDate() + days)
-      console.log(vipExpiration)
     } else {
-      console.log(typeof vipExpiration)
       vipExpiration.setDate(now.getDate() + days)
-      console.log(vipExpiration)
     }
 
 
     user.expireVipIn = convertDateToString(vipExpiration)
-    console.log(user)
+
     return await this.userRepository.save(user)
   }
 
