@@ -1,5 +1,14 @@
+
+
 export const environment = {
-    production: false,
-    currentSesion: 'current_sesion',
-    api_url: "http://127.0.0.0:3000/"
+
+}
+
+export const db_config = {
+    type: "postgres",
+    host: "localhost",
+    port: 5432,
+    username: "admin",
+    password: "85hvP5npPj2fi4",
+    database: "statshelper",
 }

@@ -6,16 +6,17 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { db_config } from './environments/enviroments';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: "postgres",
-      host: "localhost",
-      port: 5432,
-      username: "admin",
-      password: "85hvP5npPj2fi4",
-      database: "statshelper",
+      host: db_config.host,
+      port: db_config.port,
+      username: db_config.username,
+      password: db_config.password,
+      database: db_config.database,
       entities: [User],
       synchronize: true,
       logging: true,
