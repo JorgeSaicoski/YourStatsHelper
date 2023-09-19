@@ -39,6 +39,7 @@ export class AuthService {
     );;
   }
 
+
   register(user: User): Observable<any> {
     return this.http.post(`${this.backendUrl}/register`, user).pipe(
       map((response: any) => {

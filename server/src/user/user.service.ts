@@ -63,9 +63,6 @@ export class UserService {
 
   async findUserAndIncreaseVip(id, body: IncreaseVipDTO): Promise<User | undefined> {
 
-    console.log(body)
-
-
     const user = await this.userRepository.findOne({
       where: {
         id: id,
@@ -74,9 +71,7 @@ export class UserService {
 
     const days = body.days
 
-
     const now: Date = new Date()
-
 
     let vipExpiration: Date = user.expireVipIn ? convertStringToDate(user.expireVipIn) : new Date();
 
