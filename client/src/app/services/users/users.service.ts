@@ -1,7 +1,7 @@
 import { Injectable, signal } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { environment } from "@env";
 import { User } from "@model/user.model";
@@ -16,7 +16,7 @@ export class UsersService {
   
   public currentUser = signal<User>({
     id: 1,
-    name: "Month",
+    name: "",
     username: "",
     email: ""
   })
@@ -34,10 +34,12 @@ export class UsersService {
     return this.http.get<User>(url).pipe(
       map((user: User) => {
         if (user&&user.username) {
+          this.currentUser.set(user)
           return user;
         }
         return null as any;
       }),
+      shareReplay(1),
     );
   }
 
@@ -58,11 +60,11 @@ export class UsersService {
   public getCurrentUser(): void {
     
     const id = this.tokenService.getIdByToken()
-    console.log("id")
-    console.log(id)
     if (id){
-      this.setCurrentUserByID(id)
-    }
+      this.getUserByID(id).subscribe((user)=>{
+        this.currentUser.set(user);
+      })
+    } 
   }
 
   public setCurrentUser(user: User | null): void {
@@ -78,8 +80,12 @@ export class UsersService {
     });
   }
 
+
+
   public checkVipIsValid(): boolean {
+    this.getCurrentUser()
     const currentUser = this.currentUser();
+    console.log("currentUser")
     console.log(currentUser)
   
     if (currentUser && currentUser.expireVipIn) {

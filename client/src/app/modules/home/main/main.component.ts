@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { TokenService } from '@service/auth/token.service';
 import { UsersService } from '@service/users/users.service';
 import { User } from 'src/app/model/user.model';
 
@@ -11,21 +12,30 @@ export class MainComponent implements OnInit {
 
   isVip:boolean = false
 
-  user: User = {
-    id: 0,
-    name: '',
+  user = signal<User>({
+    id: 1,
+    name: "",
     username: '',
-    email: '',
-
-  };
+    email: ''
+  })
 
   constructor(
-    private userService: UsersService
+    private userService: UsersService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser();
-    this.user = this.userService.currentUser()
     this.isVip = this.userService.checkVipIsValid()
+    const id = this.tokenService.getIdByToken()
+    if (id){
+      console.log("id")
+      console.log(id)
+      this.userService.getUserByID(id).subscribe((user)=>{
+        console.log(user)
+        console.log("user")
+        this.user.set(user);
+      })
+    } 
   }
 }

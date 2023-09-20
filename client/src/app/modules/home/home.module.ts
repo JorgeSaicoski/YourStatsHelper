@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { MainComponent } from './main/main.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { UsersService } from '@service/users/users.service';
 
 
 
@@ -19,10 +18,4 @@ import { UsersService } from '@service/users/users.service';
     HomeRoutingModule
   ]
 })
-export class HomeModule {
-  constructor(
-    userService:UsersService
-  ){
-    userService.getCurrentUser()
-  }
-}
+export class HomeModule { }
