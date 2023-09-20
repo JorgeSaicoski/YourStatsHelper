@@ -1,7 +1,7 @@
 
 
 export const environment = {
-
+    secret: 'tF8hLWDubp8LVR',
 }
 
 export const db_config = {

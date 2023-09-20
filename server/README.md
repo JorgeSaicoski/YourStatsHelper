@@ -4,7 +4,7 @@ To run this application, you will need to create a file called `environments.ts`
 
 ```typescript
 export const environment = {
-
+  secret: 'tF8hLWDubp8LVR',
 }
 
 export const db_config = {
