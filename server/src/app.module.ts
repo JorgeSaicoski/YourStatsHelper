@@ -6,7 +6,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { db_config } from './environments/enviroments';
+import { db_config } from './environments/environments';
 
 @Module({
   imports: [

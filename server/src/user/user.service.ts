@@ -61,7 +61,7 @@ export class UserService {
   }
 
 
-  async findUserAndIncreaseVip(id, body: IncreaseVipDTO): Promise<User | undefined> {
+  async findUserAndIncreaseVip(id: number, body: IncreaseVipDTO): Promise<User | undefined> {
 
     const user = await this.userRepository.findOne({
       where: {
