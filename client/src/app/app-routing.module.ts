@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { vipGuard } from './guards/vip.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,14 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () =>
       import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+  },
+  {
+    path: 'vip',
+    canActivate:[
+      vipGuard
+    ],
+    loadChildren: () =>
+      import('./modules/vip/vip.module').then((m) => m.VipModule),
   },
   { path: '**', component: NotFoundComponent },
 ];
