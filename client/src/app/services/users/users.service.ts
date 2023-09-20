@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
@@ -13,15 +13,19 @@ import { TokenService } from "@service/auth/token.service";
 export class UsersService {
 
   private apiUrl: string = `${environment.api_url}user`
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  
+  public currentUser = signal<User>({
+    id: 1,
+    name: "Month",
+    username: "",
+    email: ""
+  })
 
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
   ) {
-    this.currentUserSubject = new BehaviorSubject<any>(null);
-    this.currentUser = this.currentUserSubject.asObservable();
+    
   }
 
 
@@ -54,36 +58,38 @@ export class UsersService {
   public getCurrentUser(): void {
     
     const id = this.tokenService.getIdByToken()
+    console.log("id")
+    console.log(id)
     if (id){
       this.setCurrentUserByID(id)
     }
   }
 
   public setCurrentUser(user: User | null): void {
-    this.currentUserSubject.next(user);
+    user?this.currentUser.set(user):null;
   }
 
   public setCurrentUserByID(id: number): void {
     console.log("set")
     this.getUserByID(id).subscribe((user: User | null) => {
       if (user) {
-        this.currentUserSubject.next(user);
+        this.currentUser.set(user);
       }
     });
   }
 
   public checkVipIsValid(): boolean {
-    const currentUser = this.currentUserSubject.value; // Get the current user from the BehaviorSubject
+    const currentUser = this.currentUser();
+    console.log(currentUser)
   
     if (currentUser && currentUser.expireVipIn) {
       const expireDate = new Date(currentUser.expireVipIn);
       const currentDate = new Date();
       
-      // Check if the current date is before or equal to the VIP expiration date
       return currentDate <= expireDate;
     }
   
-    return false; // Return false if there's no current user or no VIP expiration date
+    return false; 
   }
 
 }

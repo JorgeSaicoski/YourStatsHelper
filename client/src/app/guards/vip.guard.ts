@@ -5,6 +5,7 @@ import { UsersService } from '@service/users/users.service';
 
 export const vipGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const user = inject(UsersService)
+  user.getCurrentUser()
   console.log(route, state)
   return user.checkVipIsValid() ?
     true

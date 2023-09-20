@@ -25,9 +25,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getCurrentUser();
-    this.userService.currentUser.subscribe((user: User) => {
-      this.user = user;
-    });
+    this.user = this.userService.currentUser()
     this.isVip = this.userService.checkVipIsValid()
   }
 }

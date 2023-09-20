@@ -58,9 +58,7 @@ export class VipPurchaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getCurrentUser();
-    this.userService.currentUser.subscribe((user: User) => {
-      this.user = user;
-    });
+    this.user = this.userService.currentUser()
 
   }
 
