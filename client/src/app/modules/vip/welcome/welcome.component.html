@@ -1,1 +1,41 @@
-<p>welcome works!</p>
+<div class="bg-primary min-h-screen flex flex-col justify-center items-center text-accent">
+    <div class="text-center">
+      <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user().name }}</h1>
+      <p class="mb-4">You have until {{ user().expireVipIn | date:'EEEE, MMMM d, y' }}.</p>
+    </div>
+  
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4">What You Can Do:</h2>
+      <ul class="list-disc list-inside ">
+        <li>Create and solve statistics problems.</li>
+        <li>Ask for help.</li>
+      </ul>
+    </div>
+  
+  
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4">What You Should Do:</h2>
+      <ul class="list-disc list-inside">
+        <li>Create a Free Account</li>
+        <li>Get more resources</li>
+        <li>Unlock advanced features.</li>
+      </ul>
+    </div>
+
+    <div>
+        <h2 class="text-2xl font-semibold mb-4">VIP Benefits:</h2>
+        <li>Support.</li>
+        <li>Get more resources.</li>
+        <li>Unlock advanced features.</li>
+        <li>Unlock detail about all calculations.</li>
+    </div>
+  
+    <a href="/calculator" class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4">
+      Go do some statistics
+    </a>
+
+    <a href="/profile" class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4">
+      Edit Profile
+    </a>
+  </div>
+  

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { TokenService } from '@service/auth/token.service';
 import { UsersService } from '@service/users/users.service';
@@ -24,16 +25,17 @@ export class MainComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser();
-    //this.isVip = this.userService.checkVipIsValid()
     const id = this.tokenService.getIdByToken()
     if (id){
       const userSubscription = this.userService.getUserByID(id).subscribe((user)=>{
         this.user.set(user);
+        this.isVip = this.userService.checkVipIsValid(user)
       })
       this.subscriptions.push(userSubscription)
     } 
