@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { TokenService } from '@service/auth/token.service';
 import { UsersService } from '@service/users/users.service';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/model/user.model';
 
 @Component({
@@ -9,6 +10,8 @@ import { User } from 'src/app/model/user.model';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+
+  private subscriptions: Subscription[] = []
 
   isVip:boolean = false
 
@@ -26,16 +29,16 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getCurrentUser();
-    this.isVip = this.userService.checkVipIsValid()
+    //this.isVip = this.userService.checkVipIsValid()
     const id = this.tokenService.getIdByToken()
     if (id){
-      console.log("id")
-      console.log(id)
-      this.userService.getUserByID(id).subscribe((user)=>{
-        console.log(user)
-        console.log("user")
+      const userSubscription = this.userService.getUserByID(id).subscribe((user)=>{
         this.user.set(user);
       })
+      this.subscriptions.push(userSubscription)
     } 
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
