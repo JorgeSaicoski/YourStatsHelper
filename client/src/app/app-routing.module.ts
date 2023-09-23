@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { vipGuard } from './guards/vip.guard';
+import { noVipGuard } from './guards/noVip.guard ';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
+    canActivate:[
+      noVipGuard
+    ],
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
   },

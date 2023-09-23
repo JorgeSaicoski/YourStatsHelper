@@ -5,7 +5,7 @@ import { UsersService } from '@service/users/users.service';
 import { Observable, map } from 'rxjs';
 
 
-export const vipGuard: CanActivateFn =  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
+export const noVipGuard: CanActivateFn =  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
 :
   Observable<boolean | UrlTree> 
   | Promise<boolean | UrlTree> 
@@ -14,14 +14,12 @@ export const vipGuard: CanActivateFn =  (route: ActivatedRouteSnapshot, state: R
     const userService = inject(UsersService)
     const tokenService = inject(TokenService)
     const routerService = inject(Router)
-    const logged: boolean = tokenService.isAuthenticated()
-    console.log(logged)
     const id = tokenService.getIdByToken()
     if (id){
       return userService.getUserByID(id).pipe(
         map((user) => {
-          if (!userService.checkVipIsValid(user)) {
-            return routerService.createUrlTree(['/profile/vip-purchase']);
+          if (userService.checkVipIsValid(user)) {
+            return routerService.createUrlTree(['/vip']);
           } else {
             return true;
           }
