@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { VipRoutingModule } from './vip-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CalculatorModule } from '../calculator/calculator.module';
 
 
 
@@ -13,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     VipRoutingModule,
+    CalculatorModule,
     SharedModule
   ]
 })

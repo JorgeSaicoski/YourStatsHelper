@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Statistics } from '@model/statistics.model';
 
 @Component({
-  selector: 'app-statistics',
+  selector: 'statistics-calculator',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })

@@ -7,6 +7,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 const routes: Routes = [
 
   { path: '', component: WelcomeComponent },
+  {
+    path: 'calculator',
+    loadChildren: () =>
+      import('./calculator/calculator.module').then((m) => m.CalculatorModule),
+  },
 
 ];
 
