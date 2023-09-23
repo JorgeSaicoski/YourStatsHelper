@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Statistics } from '@model/statistics.model';
 
 @Component({
   selector: 'app-statistics',
@@ -6,17 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent {
+  @Output() calculateStatisticsEvent = new EventEmitter<any>();
+
   inputNumbers = '';
+  statistics: Statistics = {}
   statisticsCalculated = false;
-  mean: number | undefined;
-  median: number | undefined;
-  mode: number[] | undefined;
-  range: number | undefined;
-  variance: number | undefined;
-  standardDeviation: number | undefined;
-  percentile: number | undefined;
   percentileCalculated = false;
-  calculatedPercentile: number | undefined;
 
   calculateStatistics() {
     const numbers = this.inputNumbers.split(',').map((numStr) => parseFloat(numStr.trim()));
@@ -26,14 +22,16 @@ export class StatisticsComponent {
       return;
     }
 
-    this.mean = this.calculateMean(numbers);
-    this.median = this.calculateMedian(numbers);
-    this.mode = this.calculateMode(numbers);
-    this.range = this.calculateRange(numbers);
-    this.variance = this.calculateVariance(numbers);
-    this.standardDeviation = this.calculateStandardDeviation(numbers);
-
+    this.statistics.mean = this.calculateMean(numbers);
+    this.statistics.median = this.calculateMedian(numbers);
+    this.statistics.mode = this.calculateMode(numbers);
+    this.statistics.range = this.calculateRange(numbers);
+    this.statistics.variance = this.calculateVariance(numbers);
+    this.statistics.standardDeviation = this.calculateStandardDeviation(numbers);
     this.statisticsCalculated = true;
+
+    this.calculateStatisticsEvent.emit(this.statistics)
+    
   }
 
   calculateMean(numbers: number[]): number {
@@ -88,16 +86,16 @@ export class StatisticsComponent {
   calculatePercentile() {
     const numbers = this.inputNumbers.split(',').map((numStr) => parseFloat(numStr.trim()));
 
-    if (numbers.length === 0 || numbers.some(isNaN) || this.percentile === undefined || this.percentile < 0 || this.percentile > 100) {
+    if (numbers.length === 0 || numbers.some(isNaN) || this.statistics.percentile === undefined || this.statistics.percentile < 0 || this.statistics.percentile > 100) {
       alert('Invalid input. Please enter valid numbers separated by commas and a valid percentile (0-100).');
       return;
     }
 
     const sortedNumbers = numbers.slice().sort((a, b) => a - b);
-    const percentileIndex = Math.floor((this.percentile / 100) * (sortedNumbers.length - 1));
+    const percentileIndex = Math.floor((this.statistics.percentile / 100) * (sortedNumbers.length - 1));
 
 
-    this.calculatedPercentile = sortedNumbers[percentileIndex];
+    this.statistics.calculatedPercentile = sortedNumbers[percentileIndex];
 
     this.percentileCalculated = true;
   }

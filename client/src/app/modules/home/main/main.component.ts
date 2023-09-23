@@ -26,7 +26,6 @@ export class MainComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private tokenService: TokenService,
-    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {

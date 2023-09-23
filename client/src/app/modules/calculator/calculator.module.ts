@@ -10,6 +10,9 @@ import { CalculatorRoutingModule } from './calculator-routing.module';
   declarations: [
     StatisticsComponent
   ],
+  exports:[
+    StatisticsComponent
+  ],
   imports: [
     CommonModule,
     CalculatorRoutingModule,

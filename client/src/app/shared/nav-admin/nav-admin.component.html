@@ -1,7 +1,7 @@
 <aside class="bg-primary text-neutral w-64 h-auto p-4">
     <nav>
       <ul class="space-y-2">
-        <li class="rounded-lg bg-secondary">
+        <li class="rounded-lg bg-secondary cursor-pointer">
           <div class="rounded-lg items-center p-2 text-center hover:bg-accent w-full" (click)="changeVisibility(1)">  
               Calendar
           </div>
@@ -18,7 +18,7 @@
             </li>
           </ul>
         </li>
-        <li class="rounded-lg bg-secondary">
+        <li class="rounded-lg bg-secondary cursor-pointer">
           <div class="rounded-lg items-center p-2 text-center hover:bg-accent w-full" (click)="changeVisibility(2)" [ngClass]="{ 'bg-accent': activated === 2 }">  
               Calculators
           </div>

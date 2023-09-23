@@ -12,17 +12,17 @@
   <div *ngIf="statisticsCalculated" class="mt-4">
     <p class="text-lg font-semibold">Statistics:</p>
     <ul class="list-disc ml-6 text-neutral">
-      <li>Mean: {{ mean }}</li>
-      <li>Median: {{ median }}</li>
-      <li>Mode: {{ mode }}</li>
-      <li>Range: {{ range }}</li>
-      <li>Variance: {{ variance }}</li>
-      <li>Standard Deviation: {{ standardDeviation }}</li>
+      <li>Mean: {{ statistics.mean }}</li>
+      <li>Median: {{ statistics.median }}</li>
+      <li>Mode: {{ statistics.mode }}</li>
+      <li>Range: {{ statistics.range }}</li>
+      <li>Variance: {{ statistics.variance }}</li>
+      <li>Standard Deviation: {{ statistics.standardDeviation }}</li>
     </ul>
   </div>
   <div class="mb-4">
     <label class="block text-sm font-medium text-neutral">Enter percentile (0-100):</label>
-    <input [(ngModel)]="percentile" type="number" class="w-full mt-1 p-2 border border-neutral rounded-md"
+    <input [(ngModel)]="statistics.percentile" type="number" class="w-full mt-1 p-2 border border-neutral rounded-md"
       placeholder="e.g., 50" />
   </div>
 
@@ -31,7 +31,7 @@
 
   <div *ngIf="percentileCalculated" class="mt-4 mb-4 text-neutral">
     <p class="text-lg font-semibold">Calculated Percentile:</p>
-    <p>{{ calculatedPercentile }}</p>
+    <p>{{ statistics.calculatedPercentile }}</p>
   </div>
   <a href="/home/main" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
     Go back
