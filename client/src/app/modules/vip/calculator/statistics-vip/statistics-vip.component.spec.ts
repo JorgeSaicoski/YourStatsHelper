@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatisticsComponent } from './statistics.component';
+import { StatisticsVipComponent } from './statistics-vip.component';
 
 describe('StatisticsComponent', () => {
-  let component: StatisticsComponent;
-  let fixture: ComponentFixture<StatisticsComponent>;
+  let component: StatisticsVipComponent;
+  let fixture: ComponentFixture<StatisticsVipComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StatisticsComponent]
+      declarations: [StatisticsVipComponent]
     });
-    fixture = TestBed.createComponent(StatisticsComponent);
+    fixture = TestBed.createComponent(StatisticsVipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

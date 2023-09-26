@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StatisticsComponent } from './statistics/statistics.component';
+import { StatisticsVipComponent } from './statistics-vip/statistics-vip.component';
 
 
 const routes: Routes = [
-  { path: 'stats', component: StatisticsComponent },
+  { path: 'stats', component: StatisticsVipComponent },
 ];
 
 @NgModule({

@@ -7,7 +7,7 @@ import { Statistics } from '@model/statistics.model';
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent {
-  @Output() calculateStatisticsEvent = new EventEmitter<any>();
+  @Output() calculateStatisticsEvent = new EventEmitter<Statistics>();
 
   inputNumbers = '';
   statistics: Statistics = {}
@@ -98,6 +98,8 @@ export class StatisticsComponent {
     this.statistics.calculatedPercentile = sortedNumbers[percentileIndex];
 
     this.percentileCalculated = true;
+
+    this.calculateStatisticsEvent.emit(this.statistics)
   }
 
 }
