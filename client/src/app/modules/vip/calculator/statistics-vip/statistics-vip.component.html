@@ -1,41 +1,40 @@
-<section *ngIf="receivedDataCalculated.mean" class="bg-primary p-4 rounded-lg shadow-md m-5">
-    <p class="mb-4 text-neutral">
-        The <strong class="text-accent">MEAN</strong>, also known as the average, is the sum of all the values in the dataset divided by the number of values. 
-        In this case, the mean is approximately <strong class="text-accent">{{receivedDataCalculated.mean | number: '1.2-2'}}</strong>.
-        It represents the central tendency or the typical value of the dataset.
-    </p>
-    <p class="mb-4 text-neutral">
-        The <strong class="text-accent">MEDIAN</strong> is the middle value of the dataset when it is arranged in ascending order. 
-        In this case, the median is <strong class="text-accent">{{receivedDataCalculated.median | number: '1.2-2'}}</strong>.
-        It is another measure of central tendency and is not affected by extreme values (outliers).
-    </p>
-    <p class="mb-4 text-neutral">
-        The <strong class="text-accent">MODE</strong> is the most frequent value in a data set. 
-        In this case, the mode is <strong class="text-accent">{{receivedDataCalculated.mode}}</strong>. 
-        The mode can be useful for identifying the most common value or values in a dataset.
-    </p>
-    <p class="mb-4 text-neutral">
-        The <strong class="text-accent">RANGE</strong> is the difference between the maximum and minimum values in the dataset. 
-        Here, the range is <strong class="text-accent">{{receivedDataCalculated.range}}</strong>, indicating that the dataset spans a range of <strong>{{receivedDataCalculated.range}}</strong> units.
-    </p>
-    <p class="mb-4 text-neutral">
-        The <strong class="text-accent">STANDARD DEVIATION</strong> is a measure of the spread or dispersion of the values in the dataset. 
-        A higher standard deviation indicates that the data points are more spread out from the mean. 
-        In this case, the standard deviation is approximately <strong class="text-accent">{{receivedDataCalculated.standardDeviation | number: '1.2-2'}}</strong>.
-    </p>
-    <p class="mb-4 text-neutral">
-        Understanding the standard deviation can help gauge the level of variability in a dataset:
-    
-        - When the standard deviation is similar in magnitude to the mean, it's generally considered moderate. This indicates that the data is neither tightly clustered around the mean nor extremely dispersed.
-    
-        - When the standard deviation is close to zero or approximately half of the mean, it's considered low. This suggests a higher level of precision in the dataset, with data points closely grouped around the mean.
-    
-        - On the other hand, when the standard deviation is significantly larger than double the mean, it's considered high. This signifies a substantial dispersion in the dataset, making it more challenging to make accurate statistical predictions.
-    </p>
-    <p class="mb-4 text-neutral">
-        The <strong class="text-accent">VARIANCE</strong> is the square of the standard deviation. 
-        It quantifies the average of the squared differences between each data point and the mean. 
-        In this case, the <strong class="text-accent">{{receivedDataCalculated.variance | number: '1.2-2'}}</strong> is approximately 361.92.
-    </p>
+<section *ngIf="receivedDataCalculated.mean" class="bg-primary p-4">
+    <div class="bg-tertiary p-4 rounded-lg shadow-xl m-5 flex flex-col justify-between min-h-screen">
+        <p class="mb-4 text-neutral text-justify">
+            The <strong class="text-accent bg-secondary p-1.5 rounded-sm">MEAN</strong>, also known as the average, is the sum of all the values in the dataset divided by the number of values. 
+            In this case, the mean is approximately <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.mean | number: '1.2-2'}}</strong>.
+            It represents the central tendency or the typical value of the dataset.
+        </p>
+        <p class="mb-4 text-neutral text-justify">
+            The <strong class="text-accent bg-secondary p-1.5 rounded-sm">MEDIAN</strong> is the middle value of the dataset when it is arranged in ascending order. 
+            In this case, the median is <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.median | number: '1.2-2'}}</strong>.
+            It is another measure of central tendency and is not affected by extreme values (outliers).
+        </p>
+        <p class="mb-4 text-neutral text-justify">
+            The <strong class="text-accent bg-secondary p-1.5 rounded-sm">MODE</strong> is the most frequent value in a data set. 
+            In this case, the mode is <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.mode}}</strong>. 
+            The mode can be useful for identifying the most common value or values in a dataset.
+        </p>
+        <p class="mb-4 text-neutral text-justify">
+            The <strong class="text-accent bg-secondary p-1.5 rounded-sm">RANGE</strong> is the difference between the maximum and minimum values in the dataset. 
+            Here, the range is <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.range}}</strong>, indicating that the dataset spans a range of <strong>{{receivedDataCalculated.range}}</strong> units.
+        </p>
+        <p class="mb-4 text-neutral text-justify">
+            The <strong class="text-accent bg-secondary p-1.5 rounded-sm">STANDARD DEVIATION</strong> is a measure of the spread or dispersion of the values in the dataset. 
+            A higher standard deviation indicates that the data points are more spread out from the mean. 
+            In this case, the standard deviation is approximately <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.standardDeviation | number: '1.2-2'}}</strong>.
+        </p>
+        <div class="mb-4 text-neutral text-justify">
+            <h5 class="text-center font-semibold">Understanding the standard deviation can help gauge the level of variability in a dataset:</h5>
+            <p>- When the standard deviation is similar in magnitude to the mean, it's generally considered moderate. This indicates that the data is neither tightly clustered around the mean nor extremely dispersed.</p>
+            <p>- When the standard deviation is close to zero or approximately half of the mean, it's considered low. This suggests a higher level of precision in the dataset, with data points closely grouped around the mean.</p>
+            <p>- On the other hand, when the standard deviation is significantly larger than double the mean, it's considered high. This signifies a substantial dispersion in the dataset, making it more challenging to make accurate statistical predictions.</p>
+        </div>
+        <p class="mb-4 text-neutral text-justify">
+            The <strong class="text-accent bg-secondary p-1.5 rounded-sm">VARIANCE</strong> is the square of the standard deviation. 
+            It quantifies the average of the squared differences between each data point and the mean. 
+            In this case, the <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.variance | number: '1.2-2'}}</strong> is approximately 361.92.
+        </p>
+    </div>
 </section>
 <statistics-calculator (calculateStatisticsEvent)="handleDataFromCalculate($event)" ></statistics-calculator>
