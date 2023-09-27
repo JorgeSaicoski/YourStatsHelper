@@ -1,5 +1,5 @@
 <section *ngIf="receivedDataCalculated.mean" class="bg-primary p-4">
-    <div class="bg-tertiary p-4 rounded-lg shadow-xl m-5 flex flex-col justify-between min-h-screen">
+    <div class="bg-tertiary p-4 rounded-lg shadow-inner m-5 flex flex-col justify-between min-h-screen">
         <p class="mb-4 text-neutral text-justify">
             The <strong class="text-accent bg-secondary p-1.5 rounded-sm">MEAN</strong>, also known as the average, is the sum of all the values in the dataset divided by the number of values. 
             In this case, the mean is approximately <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.mean | number: '1.2-2'}}</strong>.
