@@ -28,7 +28,6 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser();
     const id = this.tokenService.getIdByToken()
     if (id){
       const userSubscription = this.userService.getUserByID(id).subscribe((user)=>{

@@ -81,7 +81,7 @@ export class UsersService {
 
   public checkVipIsValid(user: User): boolean {
  
-    if (user.expireVipIn) {
+    if (user&&user.expireVipIn) {
       const expireDate = new Date(user.expireVipIn);
       const currentDate = new Date();
       return currentDate < expireDate;
