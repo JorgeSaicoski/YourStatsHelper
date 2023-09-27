@@ -8,9 +8,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
-    canActivate:[
-      noVipGuard
-    ],
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
   },
