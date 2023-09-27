@@ -15,7 +15,20 @@ services:
       - ./database:/database/data
     networks:
       - stats-helper
-
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: 85hvP5npPj2fi4
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+    networks:
+      - stats-helper
+  
 networks:
   stats-helper:
     driver: bridge
