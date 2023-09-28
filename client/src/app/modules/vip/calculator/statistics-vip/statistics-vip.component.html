@@ -35,6 +35,10 @@
             It quantifies the average of the squared differences between each data point and the mean. 
             In this case, the <strong class="text-accent bg-secondary p-1.5 rounded-sm">{{receivedDataCalculated.variance | number: '1.2-2'}}</strong> is approximately 361.92.
         </p>
+        <div *ngIf="receivedDataCalculated.calculatedPercentile" class="mb-4 text-neutral text-justify">
+            <p>Percentile {{receivedDataCalculated.percentile}} = {{receivedDataCalculated.calculatedPercentile}}</p>
+            <p>This means that {{receivedDataCalculated.percentile | number: '1.2-2'}}% of the values in the dataset are less than or equal to {{receivedDataCalculated.calculatedPercentile}}.</p>
+        </div>
     </div>
 </section>
 <statistics-calculator (calculateStatisticsEvent)="handleDataFromCalculate($event)" ></statistics-calculator>
