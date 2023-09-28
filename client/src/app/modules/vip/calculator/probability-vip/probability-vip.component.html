@@ -1,1 +1,27 @@
-<p>probability-vip works!</p>
+<div class="p-4 bg-accent min-h-screen">
+    <h2 class="text-2xl font-semibold mb-4">Statistics Calculator</h2>
+  
+    <div class="mb-4 text-neutral">
+        <h3 class="text-lg font-medium my-2">Calculating Probability</h3>
+        <p>Calculate the probability of an event:</p>
+        
+        <h4 class="text-md font-medium my-2">Example: Rolling a Four on a Six-Sided Die</h4>
+        <p>To calculate the probability of rolling a 4 on a six-sided die:</p>
+        <p>You have 1 successful outcome (rolling a 4) out of 6 possible outcomes.</p>
+    
+        <label class="block text-sm font-medium mt-10">Enter the number of possibilities (e.g., if it's a six-sided dice, enter 6):</label>
+        <input 
+            [(ngModel)]="possibilities" 
+            class="w-full mt-1 p-2 border border-neutral rounded-md"
+            placeholder="e.g. 6"
+            type="number" 
+        />
+    </div>
+    <button class="bg-primary text-neutral px-4 py-2 rounded-md" (click)="calculateProbability()">Calculate</button>
+    <p class="text-lg font-medium text-neutral my-10">The probability to get a specific result is: {{ probability | number: '1.2-2' }}%</p>
+    
+  
+    <a href="/home/main" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
+      Go back
+    </a>
+  </div>

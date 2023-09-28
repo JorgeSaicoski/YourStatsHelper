@@ -4,6 +4,7 @@ import { StatisticsVipComponent } from './statistics-vip/statistics-vip.componen
 import { CalculatorRoutingModule } from './calculator-routing.module';
 import { CalculatorModule as CModule } from '../../calculator/calculator.module';
 import { ProbabilityVipComponent } from './probability-vip/probability-vip.component'
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ProbabilityVipComponent } from './probability-vip/probability-vip.compo
   imports: [
     CommonModule,
     CalculatorRoutingModule,
+    FormsModule,
     CModule
   ]
 })
