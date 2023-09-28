@@ -82,10 +82,12 @@ export class UsersService {
   public checkVipIsValid(user: User): boolean {
  
     if (user&&user.expireVipIn) {
-      const expireDate = new Date(user.expireVipIn);
+      let expireDate = new Date(user.expireVipIn);
+      expireDate.setDate(expireDate.getDate() + 1);
       const currentDate = new Date();
       return currentDate < expireDate;
     }
+    
     return false;
   }
 
