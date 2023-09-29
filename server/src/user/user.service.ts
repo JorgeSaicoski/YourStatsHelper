@@ -6,6 +6,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { IncreaseVipDTO } from './dto/increase-vip.dto';
 import { convertDateToString, convertStringToDate } from './helpers/convertData';
+import { hashPassword } from '@utils/bcrypt';
 
 @Injectable()
 export class UserService {
@@ -19,7 +20,7 @@ export class UserService {
     user.name = createUserDto.name
     user.email = createUserDto.email
     user.username = createUserDto.username
-    user.password = createUserDto.password
+    user.password = await hashPassword(createUserDto.password)
     return await this.userRepository.save(user);
   }
 

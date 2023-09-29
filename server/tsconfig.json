@@ -12,6 +12,7 @@
     "baseUrl": "./",
     "paths": {
       "@user/*": ["src/user/*"],
+      "@utils/*": ["src/utils/*"],
       "@env": ["src/environments/environment.ts"],
     },
     "incremental": true,

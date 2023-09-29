@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { CreateUserDto } from '@user/dto/create-user.dto';
+import { comparePasswords } from '@utils/bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -12,12 +13,15 @@ export class AuthService {
   async signIn(username: string, password: string) {
     try {
       const user = await this.usersService.findUserByUsername(username);
-      if (!user || user.password !== password) {
+      if (comparePasswords(password, user.password)) {
+        const payload = { sub: user.id, username: user.username, expireVipIn: user.expireVipIn };
+        const access_token = await this.jwtService.signAsync(payload);
+        return { "access_token": access_token };
+      } else if (user){
         throw new UnauthorizedException('Invalid credentials');
       }
-      const payload = { sub: user.id, username: user.username, expireVipIn: user.expireVipIn };
-      const access_token = await this.jwtService.signAsync(payload);
-      return { "access_token": access_token };
+      throw new UnauthorizedException('User not found');
+      
     } catch (err) {
       throw new UnauthorizedException('Invalid credentials');
     }
