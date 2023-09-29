@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@service/auth/auth.service';
-import { UsersService } from '@service/users/users.service';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +27,15 @@ export class LoginComponent {
 
   onSubmit():void{
 
-    this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(() => {
-      this.router.navigate(['/home/main']);
-    });
+    this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
+      () => {
+
+        this.router.navigate(['/home/main']);
+      },
+      (response: any) => {
+        this.errorMessage = response.error.message
+
+      })
 
   }
 

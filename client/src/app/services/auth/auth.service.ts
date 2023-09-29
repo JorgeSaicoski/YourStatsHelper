@@ -33,11 +33,11 @@ export class AuthService {
         throw new Error("Invalid response format")
       }),
       catchError((error: any) => {
-        console.error('Login failed:', error);
-        return throwError('Invalid credentials')
+        throw error
       })
     );;
   }
+  
 
 
   register(user: User): Observable<any> {

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { CreateUserDto } from '@user/dto/create-user.dto';
@@ -13,17 +13,21 @@ export class AuthService {
   async signIn(username: string, password: string) {
     try {
       const user = await this.usersService.findUserByUsername(username);
+      if (!user){
+        console.log("not user")
+        throw new NotFoundException('User not found');
+      }
+
       if (comparePasswords(password, user.password)) {
         const payload = { sub: user.id, username: user.username, expireVipIn: user.expireVipIn };
         const access_token = await this.jwtService.signAsync(payload);
         return { "access_token": access_token };
-      } else if (user){
-        throw new UnauthorizedException('Invalid credentials');
       }
-      throw new UnauthorizedException('User not found');
+
+      throw new UnauthorizedException('Invalid credentials');
       
     } catch (err) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw err;
     }
   }
 
