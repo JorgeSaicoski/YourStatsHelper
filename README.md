@@ -70,12 +70,6 @@ YourStatsHelper is a growing project, and there are a few critical improvements 
 
 In the current version, VIP membership validation is performed in the frontend within the User Service. While this provides a convenient initial check, it's crucial to move this validation to the backend. By handling VIP checks on the backend, we ensure the utmost security and data integrity, preventing unauthorized access to VIP features.
 
-#### Password Hashing
-
-Security is paramount, and one critical aspect is ensuring user password protection. Currently, passwords are stored without encryption. It's essential to implement password hashing on the backend to securely store user credentials. This step enhances user data security and confidentiality.
-
-Contributors interested in addressing these critical improvements are highly encouraged to collaborate and help fortify YourStatsHelper's functionality and security.
-
 
 ## License
 
