@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
+import { environment } from '@env';
 import { Plan } from '@model/plan';
 import { User } from '@model/user.model';
 import { UsersService } from '@service/users/users.service';
@@ -9,6 +11,7 @@ import { UsersService } from '@service/users/users.service';
   styleUrls: ['./vip-purchase.component.scss']
 })
 export class VipPurchaseComponent implements OnInit {
+
   plans: Plan[] =[
     {
       id: 1,
@@ -52,8 +55,9 @@ export class VipPurchaseComponent implements OnInit {
 
 
   constructor(
-    private userService: UsersService
-  ) { }
+    private userService: UsersService,
+    private http: HttpClient // Inject HttpClient
+  ) {}
 
 
   ngOnInit(): void {
@@ -74,17 +78,16 @@ export class VipPurchaseComponent implements OnInit {
   }
 
   onSubmit(){    
-    const selectedPlan = this.currentPlan.value;
   
-    // Replace with your Coinbase Commerce API Key
-    const apiKey = 'YOUR_COINBASE_COMMERCE_API_KEY';
+
+    const apiKey = environment.coinbase_api_key;
   
     const requestBody = {
-      name: 'VIP Subscription',
-      description: selectedPlan.name,
+      name: `Your Stats Helper VIP ${this.currentPlan().name}!`,
+      description: `You are buying vip for ${this.currentPlan().days} days. The price is ${this.currentPlan().price} USD. Thank you!!!`,
       local_price: {
-        amount: selectedPlan.price.toString(),
-        currency: 'USD' // Update currency as needed
+        amount: this.currentPlan().price.toString(),
+        currency: 'USD' 
       },
       pricing_type: 'fixed_price',
       metadata: {
@@ -94,19 +97,23 @@ export class VipPurchaseComponent implements OnInit {
   
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-CC-Api-Key': apiKey // Set the Coinbase Commerce API Key
-    });
+      'X-CC-Api-Key': apiKey 
+    })
   
     this.http.post('https://api.commerce.coinbase.com/charges', requestBody, { headers })
       .subscribe(
         (response: any) => {
-          // Handle the response from Coinbase Commerce (e.g., redirect the user to a payment page)
-          console.log(response);
+
+          this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
+            (response: any)=>{
+              console.log(response)
+            },
+            (error) => console.log(error)
+          );
   
-          // Replace 'redirect_url' with the actual payment page URL provided in the Coinbase Commerce response
           window.location.href = response.data.hosted_url;
         },
-        (error) => console.error(error)
+        (error: any) => console.error(error)
       );
   }
 
