@@ -74,12 +74,40 @@ export class VipPurchaseComponent implements OnInit {
   }
 
   onSubmit(){    
-    this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
-      (response: any)=>{
-        console.log(response)
+    const selectedPlan = this.currentPlan.value;
+  
+    // Replace with your Coinbase Commerce API Key
+    const apiKey = 'YOUR_COINBASE_COMMERCE_API_KEY';
+  
+    const requestBody = {
+      name: 'VIP Subscription',
+      description: selectedPlan.name,
+      local_price: {
+        amount: selectedPlan.price.toString(),
+        currency: 'USD' // Update currency as needed
       },
-      (error) => console.log(error)
-    );
+      pricing_type: 'fixed_price',
+      metadata: {
+        user_id: this.user.id
+      }
+    };
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-CC-Api-Key': apiKey // Set the Coinbase Commerce API Key
+    });
+  
+    this.http.post('https://api.commerce.coinbase.com/charges', requestBody, { headers })
+      .subscribe(
+        (response: any) => {
+          // Handle the response from Coinbase Commerce (e.g., redirect the user to a payment page)
+          console.log(response);
+  
+          // Replace 'redirect_url' with the actual payment page URL provided in the Coinbase Commerce response
+          window.location.href = response.data.hosted_url;
+        },
+        (error) => console.error(error)
+      );
   }
 
 
