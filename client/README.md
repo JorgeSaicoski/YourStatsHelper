@@ -34,7 +34,9 @@ Create a environments folder and a `environments.ts` file:
 export const environment = {
     production: false,
     currentSession: 'current_session',
-    api_url: "http://localhost:3000/"
+    api_url: "http://localhost:3000/",
+    coinbase_api_key: "YOUR_API_KEY"
+    
 };
 ```
 

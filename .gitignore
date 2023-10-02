@@ -12,6 +12,7 @@
 **/environments/
 **/env**
 
+
 # Ignore .vscode directory globally
 **/.vscode/
 
@@ -82,4 +83,5 @@ npm-debug.log*
 # System files
 **/.DS_Store
 **/Thumbs.db
+
 client/src/environments/environment.ts
