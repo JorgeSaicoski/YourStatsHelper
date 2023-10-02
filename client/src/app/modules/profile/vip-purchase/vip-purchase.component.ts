@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
+import { environment } from '@env';
 import { Plan } from '@model/plan';
 import { User } from '@model/user.model';
 import { UsersService } from '@service/users/users.service';
@@ -9,6 +11,7 @@ import { UsersService } from '@service/users/users.service';
   styleUrls: ['./vip-purchase.component.scss']
 })
 export class VipPurchaseComponent implements OnInit {
+
   plans: Plan[] =[
     {
       id: 1,
@@ -52,8 +55,9 @@ export class VipPurchaseComponent implements OnInit {
 
 
   constructor(
-    private userService: UsersService
-  ) { }
+    private userService: UsersService,
+    private http: HttpClient // Inject HttpClient
+  ) {}
 
 
   ngOnInit(): void {
@@ -74,12 +78,43 @@ export class VipPurchaseComponent implements OnInit {
   }
 
   onSubmit(){    
-    this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
-      (response: any)=>{
-        console.log(response)
+  
+
+    const apiKey = environment.coinbase_api_key;
+  
+    const requestBody = {
+      name: `Your Stats Helper VIP ${this.currentPlan().name}!`,
+      description: `You are buying vip for ${this.currentPlan().days} days. The price is ${this.currentPlan().price} USD. Thank you!!!`,
+      local_price: {
+        amount: this.currentPlan().price.toString(),
+        currency: 'USD' 
       },
-      (error) => console.log(error)
-    );
+      pricing_type: 'fixed_price',
+      metadata: {
+        user_id: this.user.id
+      }
+    };
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-CC-Api-Key': apiKey 
+    })
+  
+    this.http.post('https://api.commerce.coinbase.com/charges', requestBody, { headers })
+      .subscribe(
+        (response: any) => {
+
+          this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
+            (response: any)=>{
+              console.log(response)
+            },
+            (error) => console.log(error)
+          );
+  
+          window.location.href = response.data.hosted_url;
+        },
+        (error: any) => console.error(error)
+      );
   }
 
 
