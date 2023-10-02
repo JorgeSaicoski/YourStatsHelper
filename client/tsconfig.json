@@ -6,7 +6,7 @@
     "paths": {
       "@service/*": ["src/app/services/*"],
       "@model/*": ["src/app/model/*"],
-      "@env": ["src/environments/environment.ts"],
+      "@env": ["src/app/environments/environments.ts"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

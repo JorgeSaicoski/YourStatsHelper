@@ -6,7 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class TokenService {
-  private readonly TOKEN_KEY = environment.currentSesion;
+  private readonly TOKEN_KEY = environment.currentSession;
 
   constructor(private jwtHelper: JwtHelperService) {}
 
