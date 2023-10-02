@@ -10,6 +10,7 @@
 **/constants**
 **/environments**
 **/environments/
+**/env**
 
 # Ignore .vscode directory globally
 **/.vscode/
