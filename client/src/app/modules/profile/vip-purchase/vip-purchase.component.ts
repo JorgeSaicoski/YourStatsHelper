@@ -45,6 +45,8 @@ export class VipPurchaseComponent implements OnInit {
 
   selectedPlan: number = 1
 
+  selectedPaymentMethod: string = "bitcoin"
+
   user: User = {
     id: 0,
     name: '',
@@ -72,12 +74,15 @@ export class VipPurchaseComponent implements OnInit {
     const id = Number(this.selectedPlan)
     const newPlan = this.plans.find(plan => plan.id === id )
 
+    console.log(this.selectedPaymentMethod)
+
     if (newPlan){
       const pricePerDay = newPlan.price/newPlan.days
       this.pricePerMonth.set(Math.ceil(pricePerDay*30))
       this.currentPlan.set(newPlan)
     }
   }
+
 
   onSubmit(){    
   

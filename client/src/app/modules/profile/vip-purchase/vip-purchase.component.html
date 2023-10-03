@@ -3,7 +3,25 @@
     <h1 class="text-3xl font-bold text-gray-800">Purchase a VIP Account</h1>
     <p class="text-gray-600">Get access to exclusive features and benefits with a VIP account.</p>
     <form (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
-      <div class="flex items-center justify-between">
+      <div class="flex flex-row flex-wrap p-4 justify-center gap-16">
+        <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="bitcoin" id="radio_1" class="hidden">
+        <label class="flex flex-col w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" for="radio_1">
+          <span class="text-xs font-semibold uppercase">Bitcoin</span>
+          <span class="text-xl font-bold mt-2">Receive the double that you pay.</span>
+          <ul class="text-sm mt-2">
+            <li>Promo forever.</li>
+          </ul>
+        </label>
+        <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="paypal" id="radio_2" class="hidden">
+        <label class="flex flex-col w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" for="radio_2">
+          <span class="text-xs font-semibold uppercase">Paypal</span>
+          <span class="text-xl font-bold mt-2">Pay with credit card.</span>
+          <ul class="text-sm mt-2">
+            <li>For who prefer to use tradicional way.</li>
+          </ul>
+        </label>
+      </div>
+      <div *ngIf="selectedPaymentMethod==='paypal'" class="flex items-center justify-between">
         <label for="plan" class="text-gray-700">Plan:</label>
         <select id="plan" name="plan" [(ngModel)]="selectedPlan" (change)="onChange()" class="w-full rounded-md border-gray-300">
           <option *ngFor="let plan of plans" [value]="plan.id">{{plan.name}}</option>
