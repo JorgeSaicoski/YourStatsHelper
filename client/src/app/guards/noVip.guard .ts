@@ -26,7 +26,7 @@ export const noVipGuard: CanActivateFn =  (route: ActivatedRouteSnapshot, state:
         })
       );
     } else{
-      return routerService.createUrlTree(['/auth/login'])
+      return true
     }
     
 

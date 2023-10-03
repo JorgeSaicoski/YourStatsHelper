@@ -1,7 +1,11 @@
 <div class="bg-primary min-h-screen flex flex-col justify-center items-center text-accent">
-    <div *ngIf="user?.name" class="text-center">
+    <div *ngIf="user()?.name" class="text-center">
       <h1 class="text-3xl font-semibold mb-4">Welcome, {{ user().name }}</h1>
       <p *ngIf="isVip" class="mb-4">You have until {{ user().expireVipIn }}.</p>
+    </div>
+    <div *ngIf="!user()?.name" class="text-center">
+      <h1 class="text-3xl font-semibold mb-4">Welcome, host!</h1>
+      <p class="mb-4">Please, make a free account.</p>
     </div>
   
     <div class="mt-8">
