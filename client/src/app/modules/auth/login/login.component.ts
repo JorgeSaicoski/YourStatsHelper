@@ -29,7 +29,6 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
       () => {
-
         this.router.navigate(['/home/main']);
       },
       (response: any) => {

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '@env';
 import { Plan } from '@model/plan';
 import { User } from '@model/user.model';
@@ -56,7 +57,8 @@ export class VipPurchaseComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private http: HttpClient // Inject HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
 
@@ -107,13 +109,19 @@ export class VipPurchaseComponent implements OnInit {
           this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
             (response: any)=>{
               console.log(response)
+              this.router.navigate(['/vip/thanks'])
             },
-            (error) => console.log(error)
+            (error) => {
+              console.log(error)
+              this.router.navigate(['/error-payment'])
+            }
           );
   
-          window.location.href = response.data.hosted_url;
         },
-        (error: any) => console.error(error)
+        (error: any) => {
+          console.error(error)
+          this.router.navigate(['/error-payment'])
+      }
       );
   }
 
