@@ -1,7 +1,16 @@
 <div class="min-h-screen min-w-full bg-gray-300">
   <div class="container mx-auto px-4 py-12">
+      <!-- Start of the message -->
+      <div *ngIf="message.show" [ngClass]="{'bg-green-500': message.category === 'success', 'bg-red-500': message.category === 'err', 'bg-amber-800': message.category === 'cancel'}" class="flex flex-col justify-center items-center text-white p-4 min-h-[50vh] m-10 rounded-3xl">
+        <h1 class="text-3xl font-bold text-gray-800">{{message.message}}</h1>
+        <div *ngIf="message.category === 'success'">
+          <a [routerLink]="['/vip']" class="text-white font-bold underline">Go to vip room!</a>
+        </div>
+      </div>
 
-    <!-- Start of the main content section -->
+  
+      <!-- End of the message -->
+
     <h1 class="text-3xl font-bold text-gray-800">Purchase a VIP Account</h1>
     <p class="text-gray-600">Get access to exclusive features and benefits with a VIP account.</p>
 
@@ -9,10 +18,10 @@
     <form class="flex flex-col gap-4">
 
       <!-- Start of plan selection (Angular component starts here) -->
-      <div class="flex items-center justify-between">
-        <div *ngFor="let plan of plans" class="flex flex-row flex-wrap p-4 justify-center gap-16">
+      <div class="flex flex-row flex-wrap items-center justify-evenly">
+        <div *ngFor="let plan of plans" class="flex flex-row flex-wrap p-4 justify-center gap-16 w-full sm:w-auto">
           <input type="radio" name="plan.name" [(ngModel)]="selectedPlan" (change)="onChange()" [value]="plan.id" [id]="plan.id" class="hidden">
-          <label class="flex flex-col w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" [for]="plan.id">
+          <label class="flex flex-col w-full sm:w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" [for]="plan.id">
             <span class="text-xs font-semibold uppercase">{{plan.name}}</span>
             <span class="text-xl font-bold mt-2">${{plan.price}}</span>
             <ul class="text-sm mt-2">
@@ -20,7 +29,6 @@
             </ul>
           </label>
         </div>
-        <label for="plan" class="text-gray-700">Plan:</label>
       </div>
       <!-- End of plan selection (Angular component ends here) -->
 
@@ -36,14 +44,16 @@
       <!-- End of pricing and benefits section -->
 
       <!-- Start of purchase button -->
-      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      <div class="w-full flex justify-center">
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      </div>
+      
       <!-- End of purchase button -->
 
     </form>
     <!-- End of the form -->
 
   </div>
-  <!-- End of the main content section -->
 
 </div>
 

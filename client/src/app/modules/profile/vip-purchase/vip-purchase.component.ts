@@ -4,9 +4,10 @@ import {
   IPayPalConfig,
   ICreateOrderRequest 
 } from 'ngx-paypal';
-import { Plan } from '@model/plan';
+import { Plan } from '@model/plan.model';
 import { User } from '@model/user.model';
 import { UsersService } from '@service/users/users.service';
+import { Message } from '@model/message.model';
 
 @Component({
   selector: 'app-vip-purchase',
@@ -14,6 +15,10 @@ import { UsersService } from '@service/users/users.service';
   styleUrls: ['./vip-purchase.component.scss']
 })
 export class VipPurchaseComponent implements OnInit {
+
+  message: Message = {
+    show: false,
+  }
 
   plans: Plan[] =[
     {
@@ -36,6 +41,13 @@ export class VipPurchaseComponent implements OnInit {
       days: 365,
       price: 24,
       description: "Doesnt want to wast money? Buy here!"
+    },
+    {
+      id: 4,
+      name: "Week",
+      days: 7,
+      price: 2.5,
+      description: "Wants to test? Come here!"
     }
   ]
 
@@ -109,27 +121,55 @@ export class VipPurchaseComponent implements OnInit {
             label: 'paypal',
             layout: 'vertical'
         },
-        onClientAuthorization: () => {
+        onClientAuthorization: (data:any) => {
             this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
-              (response: any)=>{
-                console.log(response)
+              ()=>{
+                this.message = {
+                  show: true,
+                  category: "success",
+                  message: `You bougth the ${data.purchase_units[0].description.toUpperCase()}! Thank you!`
+                }
+                console.log(data)
               },
-              (error) => console.log(error)
+              () =>                 
+              this.message = {
+                show: true,
+                category: "err",
+                message: `Please contact jorge@sarkis.dev`
+              }
             );
 
         },
         onCancel: (data, actions) => {
             console.log('OnCancel', data, actions);
-
-
+            this.message = {
+              show: true,
+              category: "cancel",
+              message: `You cancelled the payment. Please, contact me if you have any trouble with the payment.`
+            }
         },
         onError: err => {
+          this.message = {
+            show: true,
+            category: "err",
+            message: `Seems like happened a error.`
+          }
             console.log('OnError', err);
       
         },
-        onClick: (data, actions) => {
-            console.log('onClick', data, actions);
-        
+        onClick: () => {
+          
+          if (this.message.category==="sucess"){
+            this.message = {
+              show: true,
+              category: "success",
+              message: `You already bougth! Are you sure that you want to buy more vip?`
+            }
+          } else{
+            this.message = {
+              show: false,
+            }
+          } 
         }
     };
 }
