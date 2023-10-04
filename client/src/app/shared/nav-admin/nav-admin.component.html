@@ -3,17 +3,17 @@
       <ul class="space-y-2">
         <li class="rounded-lg bg-secondary cursor-pointer">
           <div class="rounded-lg items-center p-2 text-center hover:bg-accent w-full" (click)="changeVisibility(1)">  
-              Calendar
+              Forum
           </div>
           <ul class="rounded-lg bg-secondary overflow-hidden w-full" *ngIf="activated===1">
             <li class="hover:bg-accent">
               <a href="#" class="p-2  flex items-center">
-                Class
+                Questions
               </a>
             </li>
             <li class="hover:bg-accent">
               <a href="#" class="p-2  flex items-center">
-                Tests
+                General
               </a>
             </li>
           </ul>
@@ -31,6 +31,23 @@
             <li class="hover:bg-accent">
               <a  [routerLink]="['/vip/calculator/probability']" class="p-2  flex items-center">
                 Probability
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="rounded-lg bg-secondary cursor-pointer">
+          <div class="rounded-lg items-center p-2 text-center hover:bg-accent w-full" (click)="changeVisibility(3)">  
+              Profile
+          </div>
+          <ul class="rounded-lg bg-secondary overflow-hidden w-full" *ngIf="activated===3">
+            <li class="hover:bg-accent">
+              <a [routerLink]="['/profile']" class="p-2  flex items-center">
+                Edit profile
+              </a>
+            </li>
+            <li class="hover:bg-accent">
+              <a [routerLink]="['/profile/vip-purchase']" class="p-2  flex items-center">
+                Buy more vip
               </a>
             </li>
           </ul>

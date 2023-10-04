@@ -109,15 +109,7 @@ export class VipPurchaseComponent implements OnInit {
             label: 'paypal',
             layout: 'vertical'
         },
-        onApprove: (data, actions) => {
-            console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then((details: any) => {
-                console.log('onApprove - you can get full order details inside onApprove: ', details);
-            });
-
-        },
-        onClientAuthorization: (data) => {
-            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        onClientAuthorization: () => {
             this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
               (response: any)=>{
                 console.log(response)
