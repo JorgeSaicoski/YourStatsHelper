@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
-import { Router } from '@angular/router';
 import { environment } from '@env';
+import {
+  IPayPalConfig,
+  ICreateOrderRequest 
+} from 'ngx-paypal';
 import { Plan } from '@model/plan';
 import { User } from '@model/user.model';
 import { UsersService } from '@service/users/users.service';
@@ -18,19 +20,22 @@ export class VipPurchaseComponent implements OnInit {
       id: 1,
       name: "Month",
       days: 30,
-      price: 5
+      price: 5,
+      description: "Need help with a specific test that will be in the next week or soon?"
     },
     {
       id: 2,
       name: "Six Month",
       days: 180,
-      price: 18
+      price: 18,
+      description: "Need help in your semester? Wee will help you to pass in that."
     },
     {
       id: 3,
       name: "Year",
       days: 365,
-      price: 24
+      price: 24,
+      description: "Doesnt want to wast money? Buy here!"
     }
   ]
 
@@ -38,14 +43,13 @@ export class VipPurchaseComponent implements OnInit {
     id: 1,
     name: "Month",
     days: 30,
-    price: 5
+    price: 5,
+    description: "Plan pre selected"
   })
 
   pricePerMonth = signal<Number>(5)
 
   selectedPlan: number = 1
-
-  selectedPaymentMethod: string = "bitcoin"
 
   user: User = {
     id: 0,
@@ -55,26 +59,87 @@ export class VipPurchaseComponent implements OnInit {
 
   };
 
+  public payPalConfig?: IPayPalConfig;
+
 
 
   constructor(
     private userService: UsersService,
-    private http: HttpClient,
-    private router: Router
   ) {}
 
 
   ngOnInit(): void {
     this.userService.getCurrentUser();
     this.user = this.userService.currentUser()
+    this.initConfig()
 
   }
+  private initConfig(): void {
+    this.payPalConfig = {
+        currency: 'EUR',
+        clientId: environment.sandbox_paypal,
+        createOrderOnClient: (data) => < ICreateOrderRequest > {
+            intent: 'CAPTURE',
+            purchase_units: [{
+                amount: {
+                    currency_code: 'EUR',
+                    value: '9.99',
+                    breakdown: {
+                        item_total: {
+                            currency_code: 'EUR',
+                            value: '9.99'
+                        }
+                    }
+                },
+                items: [{
+                    name: 'Enterprise Subscription',
+                    quantity: '1',
+                    category: 'DIGITAL_GOODS',
+                    unit_amount: {
+                        currency_code: 'EUR',
+                        value: '9.99',
+                    },
+                }]
+            }]
+        },
+        advanced: {
+            commit: 'true'
+        },
+        style: {
+            label: 'paypal',
+            layout: 'vertical'
+        },
+        onApprove: (data, actions) => {
+            console.log('onApprove - transaction was approved, but not authorized', data, actions);
+            actions.order.get().then((details: any) => {
+                console.log('onApprove - you can get full order details inside onApprove: ', details);
+            });
+
+        },
+        onClientAuthorization: (data) => {
+            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+
+        },
+        onCancel: (data, actions) => {
+            console.log('OnCancel', data, actions);
+
+
+        },
+        onError: err => {
+            console.log('OnError', err);
+      
+        },
+        onClick: (data, actions) => {
+            console.log('onClick', data, actions);
+        
+        }
+    };
+}
 
   onChange(){
     const id = Number(this.selectedPlan)
     const newPlan = this.plans.find(plan => plan.id === id )
-
-    console.log(this.selectedPaymentMethod)
+    console.log(this.selectedPlan)
 
     if (newPlan){
       const pricePerDay = newPlan.price/newPlan.days
@@ -85,50 +150,8 @@ export class VipPurchaseComponent implements OnInit {
 
 
   onSubmit(){    
-  
-
-    const apiKey = environment.coinbase_api_key;
-  
-    const requestBody = {
-      name: `Your Stats Helper VIP ${this.currentPlan().name}!`,
-      description: `You are buying vip for ${this.currentPlan().days} days. The price is ${this.currentPlan().price} USD. Thank you!!!`,
-      local_price: {
-        amount: this.currentPlan().price.toString(),
-        currency: 'USD' 
-      },
-      pricing_type: 'fixed_price',
-      metadata: {
-        user_id: this.user.id
-      }
-    };
-  
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-CC-Api-Key': apiKey 
-    })
-  
-    this.http.post('https://api.commerce.coinbase.com/charges', requestBody, { headers })
-      .subscribe(
-        (response: any) => {
-
-          this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
-            (response: any)=>{
-              console.log(response)
-              this.router.navigate(['/vip/thanks'])
-            },
-            (error) => {
-              console.log(error)
-              this.router.navigate(['/error-payment'])
-            }
-          );
-  
-        },
-        (error: any) => {
-          console.error(error)
-          this.router.navigate(['/error-payment'])
-      }
-      );
   }
+
 
 
 }

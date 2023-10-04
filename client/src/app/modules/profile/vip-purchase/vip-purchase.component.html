@@ -8,34 +8,19 @@
     <!-- Start of the form -->
     <form (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
 
-      <!-- Start of payment options -->
-      <div class="flex flex-row flex-wrap p-4 justify-center gap-16">
-        <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="bitcoin" id="radio_1" class="hidden">
-        <label class="flex flex-col w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" for="radio_1">
-          <span class="text-xs font-semibold uppercase">Bitcoin</span>
-          <span class="text-xl font-bold mt-2">Receive double what you pay.</span>
-          <ul class="text-sm mt-2">
-            <li>Promo forever.</li>
-          </ul>
-        </label>
-
-        <input type="radio" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" value="paypal" id="radio_2" class="hidden">
-        <label class="flex flex-col w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" for="radio_2">
-          <span class="text-xs font-semibold uppercase">Paypal</span>
-          <span class="text-xl font-bold mt-2">Pay with a credit card.</span>
-          <ul class="text-sm mt-2">
-            <li>For those who prefer the traditional way.</li>
-          </ul>
-        </label>
-      </div>
-      <!-- End of payment options -->
-
       <!-- Start of plan selection (Angular component starts here) -->
-      <div *ngIf="selectedPaymentMethod==='paypal'" class="flex items-center justify-between">
+      <div class="flex items-center justify-between">
+        <div *ngFor="let plan of plans" class="flex flex-row flex-wrap p-4 justify-center gap-16">
+          <input type="radio" name="plan.name" [(ngModel)]="selectedPlan" (change)="onChange()" [value]="plan.id" [id]="plan.id" class="hidden">
+          <label class="flex flex-col w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" [for]="plan.id">
+            <span class="text-xs font-semibold uppercase">{{plan.name}}</span>
+            <span class="text-xl font-bold mt-2">${{plan.price}}</span>
+            <ul class="text-sm mt-2">
+              <li>{{plan.description}}</li>
+            </ul>
+          </label>
+        </div>
         <label for="plan" class="text-gray-700">Plan:</label>
-        <select id="plan" name="plan" [(ngModel)]="selectedPlan" (change)="onChange()" class="w-full rounded-md border-gray-300">
-          <option *ngFor="let plan of plans" [value]="plan.id">{{plan.name}}</option>
-        </select>
       </div>
       <!-- End of plan selection (Angular component ends here) -->
 
@@ -48,19 +33,10 @@
         <label class="text-gray-700">Price per Month:</label>
         <span class="text-gray-800">${{pricePerMonth()}}</span>
       </div>
-
-      <div class="flex items-center justify-between">
-        <label class="text-gray-700">Benefits:</label>
-        <ul class="list-disc list-inside">
-          <li>Exclusive content</li>
-          <li>Priority support</li>
-          <li>Early access to new features</li>
-        </ul>
-      </div>
       <!-- End of pricing and benefits section -->
 
       <!-- Start of purchase button -->
-      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Purchase VIP Account</button>
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
       <!-- End of purchase button -->
 
     </form>

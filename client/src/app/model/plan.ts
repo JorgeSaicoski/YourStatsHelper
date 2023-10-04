@@ -2,5 +2,6 @@ export interface Plan{
   id: number;
   name: string;
   days: number;
-  price: number
+  price: number;
+  description: string;
 }

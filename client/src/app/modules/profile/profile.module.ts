@@ -4,7 +4,7 @@ import { VipPurchaseComponent } from './vip-purchase/vip-purchase.component';
 import { EditComponent } from './edit/edit.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { FormsModule } from '@angular/forms';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPayPalModule
   ]
 })
 export class ProfileModule { }
