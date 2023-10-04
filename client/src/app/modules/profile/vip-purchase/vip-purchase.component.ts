@@ -76,28 +76,28 @@ export class VipPurchaseComponent implements OnInit {
   }
   private initConfig(): void {
     this.payPalConfig = {
-        currency: 'EUR',
+        currency: 'USD',
         clientId: environment.sandbox_paypal,
         createOrderOnClient: (data) => < ICreateOrderRequest > {
             intent: 'CAPTURE',
             purchase_units: [{
                 amount: {
-                    currency_code: 'EUR',
-                    value: '9.99',
+                    currency_code: 'USD',
+                    value: this.currentPlan().price.toFixed(2),
                     breakdown: {
                         item_total: {
-                            currency_code: 'EUR',
-                            value: '9.99'
+                            currency_code: 'USD',
+                            value: this.currentPlan().price.toFixed(2)
                         }
                     }
                 },
                 items: [{
-                    name: 'Enterprise Subscription',
+                    name: this.currentPlan().name,
                     quantity: '1',
                     category: 'DIGITAL_GOODS',
                     unit_amount: {
-                        currency_code: 'EUR',
-                        value: '9.99',
+                        currency_code: 'USD',
+                        value: this.currentPlan().price.toFixed(2),
                     },
                 }]
             }]
@@ -118,6 +118,12 @@ export class VipPurchaseComponent implements OnInit {
         },
         onClientAuthorization: (data) => {
             console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+            this.userService.getUserByIDAndIncreaseVip(this.user.id, this.currentPlan().days).subscribe(
+              (response: any)=>{
+                console.log(response)
+              },
+              (error) => console.log(error)
+            );
 
         },
         onCancel: (data, actions) => {
@@ -147,11 +153,4 @@ export class VipPurchaseComponent implements OnInit {
       this.currentPlan.set(newPlan)
     }
   }
-
-
-  onSubmit(){    
-  }
-
-
-
 }
