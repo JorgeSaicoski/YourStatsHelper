@@ -23,30 +23,30 @@ export class VipPurchaseComponent implements OnInit {
   plans: Plan[] =[
     {
       id: 1,
-      name: "Week",
-      days: 7,
-      price: 2.5,
-      description: "Looking to test the waters? Dive into our Week Plan! It's perfect for those seeking a brief trial period."
+      name: "Tri Cool",
+      days: 3,
+      price: 0.99,
+      description: "Looking to test the waters? Dive into our Tri Cool! It's perfect for those seeking a brief trial period."
     },
     {
       id: 2,
       name: "Month",
       days: 30,
-      price: 5,
+      price: 4.99,
       description: "Need assistance with an upcoming test or exam? Our Month Plan offers support tailored for your needs in the next month or soon."
     },
     {
       id: 3,
       name: "Six Month",
       days: 180,
-      price: 18,
+      price: 24.99,
       description: "Embarking on a semester-long journey? Our Six-Month Plan is designed to guide you through your entire semester and ensure your success."
     },
     {
       id: 4,
       name: "Year",
       days: 365,
-      price: 24,
+      price: 39.99,
       description: "Want to make a long-term commitment without breaking the bank? The Year Plan provides a cost-effective solution to help you achieve your academic goals."
     }
   ]

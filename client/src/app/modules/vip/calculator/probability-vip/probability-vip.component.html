@@ -14,10 +14,21 @@
             [(ngModel)]="possibilities" 
             class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
             type="number" 
+            [min]="possibilities_wanted"
+        />
+
+        <label class="block text-sm font-medium mt-10">Enter the number of wanted results (e.g., if you want the number 2 and 4, enter 2):</label>
+        <input 
+            [(ngModel)]="possibilities_wanted" 
+            class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
+            type="number"
+            min="1"
         />
     </div>
+    
     <button class="bg-primary text-neutral px-4 py-2 rounded-md" (click)="calculateProbability()">Calculate</button>
     <p class="text-lg font-medium text-neutral my-10">The probability to get a specific result is: {{ probability | number: '1.2-2' }}%</p>
+    <p *ngIf="message.show" class="text-lg font-medium text-neutral my-10">{{message.message}}</p>
     
   
     <a [routerLink]="['/home/main']" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
