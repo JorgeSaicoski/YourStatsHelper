@@ -21,7 +21,7 @@
       <div class="flex flex-row flex-wrap items-center justify-evenly">
         <div *ngFor="let plan of plans" class="flex flex-row flex-wrap p-4 justify-center gap-16 w-full sm:w-auto">
           <input type="radio" name="plan.name" [(ngModel)]="selectedPlan" (change)="onChange()" [value]="plan.id" [id]="plan.id" class="hidden">
-          <label class="flex flex-col w-full sm:w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" [for]="plan.id">
+          <label class="flex flex-col min-h-[200px] w-full sm:w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" [for]="plan.id">
             <span class="text-xs font-semibold uppercase">{{plan.name}}</span>
             <span class="text-xl font-bold mt-2">${{plan.price}}</span>
             <ul class="text-sm mt-2">
