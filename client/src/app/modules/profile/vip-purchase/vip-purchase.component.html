@@ -21,7 +21,7 @@
       <div class="flex flex-row flex-wrap items-center justify-evenly">
         <div *ngFor="let plan of plans" class="flex flex-row flex-wrap p-4 justify-center gap-16 w-full sm:w-auto">
           <input type="radio" name="plan.name" [(ngModel)]="selectedPlan" (change)="onChange()" [value]="plan.id" [id]="plan.id" class="hidden">
-          <label class="flex flex-col min-h-[200px] w-full sm:w-80 py-4 px-10 border-2 border-gray-400 cursor-pointer" [for]="plan.id">
+          <label class="flex flex-col min-h-[200px] w-full sm:w-80 py-4 px-10 border-2 bg-tertiary text-neutral border-gray-400 cursor-pointer ease-in duration-300" [for]="plan.id">
             <span class="text-xs font-semibold uppercase">{{plan.name}}</span>
             <span class="text-xl font-bold mt-2">${{plan.price}}</span>
             <ul class="text-sm mt-2">
@@ -32,23 +32,18 @@
       </div>
       <!-- End of plan selection (Angular component ends here) -->
 
-      <!-- Start of pricing and benefits section -->
-      <div class="flex items-center justify-between">
-        <label class="text-gray-700">Price:</label>
-        <span class="text-gray-800">${{currentPlan().price}}</span>
-        <label class="text-gray-700">Days:</label>
-        <span class="text-gray-800">{{currentPlan().days}}</span>
-        <label class="text-gray-700">Price per Month:</label>
-        <span class="text-gray-800">${{pricePerMonth()}}</span>
-      </div>
-      <!-- End of pricing and benefits section -->
-
       <!-- Start of purchase button -->
       <div class="w-full flex justify-center">
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-      </div>
-      
+      </div>     
       <!-- End of purchase button -->
+
+      <!-- Start of go back button -->
+      <a [routerLink]="['/home/main']" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
+        Go back
+      </a>
+      <!-- End of go back button -->
+
 
     </form>
     <!-- End of the form -->

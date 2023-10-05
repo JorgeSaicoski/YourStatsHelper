@@ -6,23 +6,28 @@
       <p class="mb-4">You have until {{ user().expireVipIn | date:'EEEE, MMMM d, y' }}.</p>
     </div>
 
-    <div>
+    <div class="flex flex-col p-4">
       <h2 class="text-2xl font-semibold mb-4">Tank you for support the project!</h2>
       <li>You can ask for help in our forum.</li>
       <li>Our project thrives with your support.</li>
       <li>You can request new features.</li>
       <li>Enjoy an exclusive NavBar to enhance your experience.</li>
     </div>
+    
+    <div class="flex flex-col">
+      <a [routerLink]="['/vip/calculator/stats']"  class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4 w-full text-center">
+        Go do some statistics
+      </a>
+      <a [routerLink]="['/vip/calculator/probability']"  class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4 w-full text-center">
+        Go do some probability
+      </a>
 
-    <a [routerLink]="['/vip/calculator/stats']"  class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4">
-      Go do some statistics
-    </a>
-    <a [routerLink]="['/vip/calculator/probability']"  class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4">
-      Go do some probability
-    </a>
-
-    <a [routerLink]="['/profile']" class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4">
-      Edit Profile
-    </a>
+      <a [routerLink]="['/profile']" class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4 w-full text-center">
+        Edit Profile
+      </a>
+      <a [routerLink]="['/profile/vip-purchase']"class="bg-tertiary hover:bg-secondary text-neutral font-bold py-2 px-4 rounded mt-4 w-full text-center">
+        Buy more vip
+      </a>
+    </div>
   </div>
 </div>
