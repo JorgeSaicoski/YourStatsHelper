@@ -10,7 +10,6 @@ export class StatisticsVipComponent {
 
   handleDataFromCalculate(data: Statistics) {
     this.receivedDataCalculated = data;
-    console.log(data)
   }
 
 }

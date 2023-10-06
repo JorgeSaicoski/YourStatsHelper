@@ -8,7 +8,8 @@ import { Message } from '@model/message.model';
   styleUrls: ['./probability-vip.component.scss']
 })
 export class ProbabilityVipComponent {
-  possibilities:number = 0;
+  possibilities:number = 1;
+  numberOfEvents:number = 1;
   probability:number = 0;
   possibilities_wanted:number = 1;
   message: Message ={
@@ -16,16 +17,20 @@ export class ProbabilityVipComponent {
   }
   calculateProbability(){
     if (this.possibilities<this.possibilities_wanted){
-      alert("The number of possibilities can't be smaller than the wanted possiblities");
-    }
-    this.probability = (this.possibilities_wanted/this.possibilities)*100
-    if (this.probability < 0){
       this.message ={
         show:true,
         category:"error",
-        message:'You used negative numbers, so you will need to ignore the "-" signal'
+        message:"The number of possibilities can't be smaller than the wanted possiblities"
 
       }
+     return;
+    }
+    const singlePossibility = this.possibilities_wanted/this.possibilities
+    console.log(Math.pow(-(singlePossibility-1), this.numberOfEvents))
+    this.probability = -(Math.pow(-(singlePossibility-1), this.numberOfEvents)-1) * 100;
+    if (this.probability < 0){
+      this.probability = -this.probability
+
     }
   }
 

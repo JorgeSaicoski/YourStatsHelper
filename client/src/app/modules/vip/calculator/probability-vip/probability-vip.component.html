@@ -24,6 +24,14 @@
             type="number"
             min="1"
         />
+
+        <label class="block text-sm font-medium mt-10">Enter the number of events (e.g., if you will play the dice twice, enter 2):</label>
+        <input 
+            [(ngModel)]="numberOfEvents" 
+            class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
+            type="number"
+            min="1"
+        />
     </div>
     
     <button class="bg-primary text-neutral px-4 py-2 rounded-md" (click)="calculateProbability()">Calculate</button>
