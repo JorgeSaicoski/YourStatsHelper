@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, shareReplay } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from "@env";
-import { User } from "@model/user.model";
+import { IUser } from "src/app/interfaces/user.model";
 import { TokenService } from "@service/auth/token.service";
 
 @Injectable({
@@ -14,7 +14,7 @@ export class UsersService {
 
   private apiUrl: string = `${environment.api_url}user`
 
-  public currentUser = signal<User>({
+  public currentUser = signal<IUser>({
     id: 1,
     name: "",
     username: "",
@@ -29,10 +29,10 @@ export class UsersService {
   }
 
 
-  public getUserByID(id: number): Observable<User> {
+  public getUserByID(id: number): Observable<IUser> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<User>(url).pipe(
-      map((user: User) => {
+    return this.http.get<IUser>(url).pipe(
+      map((user: IUser) => {
         if (user && user.username) {
           this.currentUser.set(user)
           return user;
@@ -43,10 +43,10 @@ export class UsersService {
     );
   }
 
-  public getUserByIDAndIncreaseVip(id: number, days: number): Observable<User> {
+  public getUserByIDAndIncreaseVip(id: number, days: number): Observable<IUser> {
     const url = `${this.apiUrl}/vip/${id}`;
-    return this.http.patch<User>(url, { days }).pipe(
-      map((user: User) => {
+    return this.http.patch<IUser>(url, { days }).pipe(
+      map((user: IUser) => {
         if (user && user.username) {
           return user;
         }
@@ -57,19 +57,19 @@ export class UsersService {
 
 
 
-  public getCurrentUser(): User {
+  public getCurrentUser(): IUser {
     const user = this.currentUser()
     
     return user
   }
 
-  public setCurrentUser(user: User | null): void {
+  public setCurrentUser(user: IUser | null): void {
     user ? this.currentUser.set(user) : null;
   }
 
   public setCurrentUserByID(id: number): void {
     
-    this.getUserByID(id).subscribe((user: User | null) => {
+    this.getUserByID(id).subscribe((user: IUser | null) => {
       if (user) {
         console.log("set")
         this.currentUser.set(user);
@@ -79,7 +79,7 @@ export class UsersService {
 
 
 
-  public checkVipIsValid(user: User): boolean {
+  public checkVipIsValid(user: IUser): boolean {
  
     if (user&&user.expireVipIn) {
       let expireDate = new Date(user.expireVipIn);

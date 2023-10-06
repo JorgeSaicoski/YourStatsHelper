@@ -4,10 +4,10 @@ import {
   IPayPalConfig,
   ICreateOrderRequest 
 } from 'ngx-paypal';
-import { Plan } from '@model/plan.model';
-import { User } from '@model/user.model';
+import { IPlan } from 'src/app/interfaces/plan.model';
+import { IUser } from 'src/app/interfaces/user.model';
 import { UsersService } from '@service/users/users.service';
-import { Message } from '@model/message.model';
+import { IMessage } from '@model/message.model';
 
 @Component({
   selector: 'app-vip-purchase',
@@ -16,11 +16,11 @@ import { Message } from '@model/message.model';
 })
 export class VipPurchaseComponent implements OnInit {
 
-  message: Message = {
+  message: IMessage = {
     show: false,
   }
 
-  plans: Plan[] =[
+  plans: IPlan[] =[
     {
       id: 1,
       name: "Tri Cool",
@@ -51,7 +51,7 @@ export class VipPurchaseComponent implements OnInit {
     }
   ]
 
-  currentPlan = signal<Plan>({ 
+  currentPlan = signal<IPlan>({ 
     id: 1,
     name: "Month",
     days: 30,
@@ -63,7 +63,7 @@ export class VipPurchaseComponent implements OnInit {
 
   selectedPlan: number = 1
 
-  user: User = {
+  user: IUser = {
     id: 0,
     name: '',
     username: '',

@@ -3,7 +3,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { TokenService } from '@service/auth/token.service';
 import { UsersService } from '@service/users/users.service';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/model/user.model';
+import { IUser } from 'src/app/interfaces/user.model';
 
 @Component({
   selector: 'main',
@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
 
   isVip:boolean = false
 
-  user = signal<User>({
+  user = signal<IUser>({
     id: 1,
     name: "",
     username: '',

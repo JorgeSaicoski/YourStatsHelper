@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { User } from '@model/user.model';
+import { IUser } from 'src/app/interfaces/user.model';
 import { TokenService } from '@service/auth/token.service';
 import { UsersService } from '@service/users/users.service';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ export class WelcomeComponent implements OnInit {
 
   private subscriptions: Subscription[] = []
 
-  user = signal<User>({
+  user = signal<IUser>({
     id: 1,
     name: "",
     username: '',

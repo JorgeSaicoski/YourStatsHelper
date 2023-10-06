@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Statistics } from '@model/statistics.model';
+import { IStatistics } from 'src/app/interfaces/statistics.model';
 
 @Component({
   selector: 'statistics-calculator',
@@ -7,10 +7,10 @@ import { Statistics } from '@model/statistics.model';
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent {
-  @Output() calculateStatisticsEvent = new EventEmitter<Statistics>();
+  @Output() calculateStatisticsEvent = new EventEmitter<IStatistics>();
 
   inputNumbers = '';
-  statistics: Statistics = {}
+  statistics: IStatistics = {}
   statisticsCalculated = false;
   percentileCalculated = false;
 

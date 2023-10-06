@@ -1,4 +1,4 @@
-export interface DecodeToken{
+export interface IDecodeToken{
     sub: number;
     username: string;
     expireVipIn: Date | null;

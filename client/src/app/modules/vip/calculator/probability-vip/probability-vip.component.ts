@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Message } from '@model/message.model';
+import { IMessage } from '@model/message.model';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class ProbabilityVipComponent {
   numberOfEvents:number = 1;
   probability:number = 0;
   possibilities_wanted:number = 1;
-  message: Message ={
+  message: IMessage ={
     show:false
   }
   calculateProbability(){

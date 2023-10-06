@@ -1,4 +1,4 @@
-export interface Plan{
+export interface IPlan{
   id: number;
   name: string;
   days: number;

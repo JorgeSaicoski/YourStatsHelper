@@ -1,4 +1,4 @@
-export interface Statistics {
+export interface IStatistics {
     mean?: number;
     median?: number;
     mode?: number[];

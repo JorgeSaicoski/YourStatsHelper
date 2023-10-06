@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { environment } from '@env';
 import { TokenService } from './token.service';
-import { User } from '@model/user.model';
+import { IUser } from 'src/app/interfaces/user.model';
 import { UsersService } from '@service/users/users.service';
 
 
@@ -40,7 +40,7 @@ export class AuthService {
   
 
 
-  register(user: User): Observable<any> {
+  register(user: IUser): Observable<any> {
     return this.http.post(`${this.backendUrl}/register`, user).pipe(
       map((response: any) => {
         const token = response.access_token;
@@ -49,7 +49,7 @@ export class AuthService {
           this.userService.setCurrentUserByID(userId)
           return response;
         }
-        throw new Error('Invalid response format'); // Handle unexpected response
+        throw new Error('Invalid response format'); 
       }),
       catchError((error: any) => {
         console.error('Registration failed:', error);
