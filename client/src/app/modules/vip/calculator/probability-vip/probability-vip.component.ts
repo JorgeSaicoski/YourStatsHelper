@@ -7,54 +7,54 @@ import { IMessage } from '@model/message.model';
   templateUrl: './probability-vip.component.html',
   styleUrls: ['./probability-vip.component.scss']
 })
+
 export class ProbabilityVipComponent {
 
-  possibilities:number = 1;
-  numberOfEvents:number = 1;
-  probability:number = 0;
-  possibilities_wanted:number = 1;
-  kind:string = "get_number_once"
-  message: IMessage ={
-    show:false
-  }
-  calculateProbability(){
-    if (this.possibilities<this.possibilities_wanted){
-      this.message ={
-        show:true,
-        category:"error",
-        message:"The number of possibilities can't be smaller than the wanted possiblities"
+  totalPossibleOutcomes: number = 1; 
+  numberOfDesiredOutcomes: number = 1; 
+  numberOfRepetitions: number = 1;
+  calculationMethod: string = "getNumberOnce"; 
+  calculatedProbability: number = 0;
+   message: IMessage = {
+    show: false
+  };
 
-      }
-     return;
+  calculateProbability() {
+    if (this.totalPossibleOutcomes < this.numberOfDesiredOutcomes) {
+      this.message = {
+        show: true,
+        category: "error",
+        message: "The total possible outcomes cannot be fewer than the desired outcomes."
+      };
+      return;
     }
-    const singlePossibility = this.possibilities_wanted/this.possibilities
 
-    switch(this.kind) { 
-        case "get_number_once": { 
-          this.probability = -(Math.pow(-(singlePossibility-1), this.numberOfEvents)-1) * 100 
-            break; 
-        } 
-        case "in_row": { 
-          this.probability = Math.pow(singlePossibility, this.numberOfEvents) * 100
-            break; 
-        } 
-        default: { 
-          this.probability = singlePossibility * 100
-            break; 
-        } 
+    const singleOutcomeProbability = this.numberOfDesiredOutcomes / this.totalPossibleOutcomes;
+
+    switch (this.calculationMethod) {
+      case "getNumberOnce": {
+        this.calculatedProbability = -(Math.pow(-(singleOutcomeProbability - 1), this.numberOfRepetitions) - 1) * 100;
+        break;
       }
-    ;
-    if (this.probability < 0){
-      this.message ={
-        show:true,
-        category:"error",
-        message:"You have used negatives values, please ignore the '-' signal"
+      case "inRow": {
+        this.calculatedProbability = Math.pow(singleOutcomeProbability, this.numberOfRepetitions) * 100;
+        break;
+      }
+      default: {
+        this.calculatedProbability = singleOutcomeProbability * 100;
+        break;
+      }
+    }
 
-      } 
-
-    }else{
-      this.message.show = false
+    if (this.calculatedProbability < 0) {
+      this.message = {
+        show: true,
+        category: "error",
+        message: "Please disregard the negative sign as probability cannot be negative."
+      };
+    } else {
+      this.message.show = false;
     }
   }
-
 }
+

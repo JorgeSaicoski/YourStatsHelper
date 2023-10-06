@@ -11,28 +11,28 @@
   
       <label class="block text-sm font-medium mt-10">Enter the total number of possibilities (e.g., for a six-sided die, enter 6):</label>
       <input 
-          [(ngModel)]="possibilities" 
+          [(ngModel)]="totalPossibleOutcomes" 
           class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
           type="number" 
-          [min]="possibilities_wanted"
+          [min]="numberOfDesiredOutcomes"
       />
 
       <label class="block text-sm font-medium mt-10">Enter the number of desired outcomes (e.g., if you want the numbers 2 and 4, enter 2):</label>
       <input 
-          [(ngModel)]="possibilities_wanted" 
+          [(ngModel)]="numberOfDesiredOutcomes" 
           class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
           type="number"
           min="1"
       />
       <label class="block text-sm font-medium mt-10">Choose the type of calculation (e.g., if you want to get the same result consecutively, select "In a row". If you just need the result at least once, choose "Get number once"):</label>
-      <select [(ngModel)]="kind" class="bg-tertiary text-neutral border-2 rounded">
-        <option value="get_number_once">Get number once</option>
-        <option value="in_row">In a row</option>
+      <select [(ngModel)]="calculationMethod" class="bg-tertiary text-neutral border-2 rounded">
+        <option value="getNumberOnce">Get number once</option>
+        <option value="inRow">In a row</option>
         <option value="">None</option>
       </select>
       <label class="block text-sm font-medium mt-10">Enter the number of times you'll perform the event (e.g., if you're rolling the die twice, enter 2):</label>
       <input 
-          [(ngModel)]="numberOfEvents" 
+          [(ngModel)]="numberOfRepetitions" 
           class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
           type="number"
           min="1"
@@ -40,7 +40,7 @@
   </div>
   
   <button class="bg-primary text-neutral px-4 py-2 rounded-md" (click)="calculateProbability()">Calculate</button>
-  <p class="text-lg font-medium text-neutral my-10">The probability of getting your desired result is: {{ probability | number: '1.2-2' }}%</p>
+  <p class="text-lg font-medium text-neutral my-10">The probability of getting your desired result is: {{ calculatedProbability | number: '1.2-2' }}%</p>
   <p *ngIf="message.show" class="text-lg font-medium text-neutral my-10">{{message.message}}</p>
   
 
