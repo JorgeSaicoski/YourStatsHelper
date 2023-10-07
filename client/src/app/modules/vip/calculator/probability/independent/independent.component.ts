@@ -3,19 +3,18 @@ import { IMessage } from '@model/message.model';
 
 
 @Component({
-  selector: 'app-probability-vip',
-  templateUrl: './probability-vip.component.html',
-  styleUrls: ['./probability-vip.component.scss']
+  selector: 'independent-probability',
+  templateUrl: './independent.component.html'
 })
 
-export class ProbabilityVipComponent {
+export class IndependentComponent {
 
-  totalPossibleOutcomes: number = 1; 
-  numberOfDesiredOutcomes: number = 1; 
+  totalPossibleOutcomes: number = 1;
+  numberOfDesiredOutcomes: number = 1;
   numberOfRepetitions: number = 1;
-  calculationMethod: string = "getNumberOnce"; 
+  calculationMethod: string = "getNumberOnce";
   calculatedProbability: number = 0;
-   message: IMessage = {
+  message: IMessage = {
     show: false
   };
 

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProbabilityVipComponent } from './probability-vip.component';
+import { IndependentComponent } from './independent.component';
 
 describe('ProbabilityVipComponent', () => {
-  let component: ProbabilityVipComponent;
-  let fixture: ComponentFixture<ProbabilityVipComponent>;
+  let component: IndependentComponent;
+  let fixture: ComponentFixture<IndependentComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProbabilityVipComponent]
+      declarations: [IndependentComponent]
     });
-    fixture = TestBed.createComponent(ProbabilityVipComponent);
+    fixture = TestBed.createComponent(IndependentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
