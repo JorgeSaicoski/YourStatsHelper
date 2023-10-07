@@ -1,19 +1,21 @@
-<section class="bg-primary text-accent flex flex-col justify-between min-h-screen p-10">
-    <div class="bg-tertiary text-neutral flex flex-col justify-between gap-5 p-10 rounded">
+<section class="bg-primary text-accent flex flex-row flex-wrap justify-between min-h-screen p-10 font-mono">
+    <div class="bg-tertiary text-neutral flex flex-col justify-between gap-5 p-10 rounded max-w-lg">
         <h2 class="text-3xl text-center">Independent Probability</h2>
-        <p class="text-justify text-sm font-medium mt-10">
+        <p class="text-justify text-base font-medium mt-10">
             In independent probability, the probability of each event occurring is not affected by the outcomes of previous events. 
             Each event is considered to be unrelated to the others in terms of probability. 
             This is in contrast to "Dependent Probability" where the outcome of one event can influence the probability of subsequent events.
         </p>
-        <div class="text-justify text-sm font-medium mt-10">
-            <h6>Examples</h6>
+        <div class="text-justify text-basefont-medium mt-10">
+            <h6 class="text-lg">Examples</h6>
             <p>Coin Tosses, Dice Rolls and Weather Conditions</p>
         </div>
-        <p class="text-justify text-sm font-medium mt-10">In these examples, the key idea is that the outcome of one event is not influenced by the outcomes of previous events, making them independent probabilities.</p>
+        <p class="text-justify text-base font-medium mt-10">In these examples, the key idea is that the outcome of one event is not influenced by the outcomes of previous events, making them independent probabilities.</p>
         <a [routerLink]="['/vip/calculator/probability/independent']" class="bg-primary text-accent hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
             Go to Independent Probability calculator
         </a>
-
     </div>
+    <a [routerLink]="['/vip']" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 mt-10 h-10 rounded mr-4 w-full">
+        Go back
+    </a>
 </section>
