@@ -19,7 +19,7 @@
 
       <label class="block text-sm font-medium mt-10">Enter the number of desired outcomes (e.g., if you want the numbers 2 and 4, enter 2):</label>
       <input 
-          [(ngModel)]="numberOfDesiredOutcomes" 
+          [(ngModel)]="numberOfDesiredOutcomes"
           class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
           type="number"
           min="1"
@@ -30,8 +30,9 @@
         <option value="inRow">In a row</option>
         <option value="">None</option>
       </select>
-      <label class="block text-sm font-medium mt-10">Enter the number of times you'll perform the event (e.g., if you're rolling the die twice, enter 2):</label>
-      <input 
+      <label class="block text-sm font-medium mt-10" *ngIf="calculationMethod">Enter the number of times you'll perform the event (e.g., if you're rolling the die twice, enter 2):</label>
+      <input
+          *ngIf="calculationMethod" 
           [(ngModel)]="numberOfRepetitions" 
           class="w-full mt-1 p-2 border text-accent border-neutral rounded-md"
           type="number"
