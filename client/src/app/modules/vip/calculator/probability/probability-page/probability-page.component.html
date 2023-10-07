@@ -1,21 +1,57 @@
-<section class="bg-primary text-accent flex flex-row flex-wrap justify-between min-h-screen p-10 font-mono">
-    <div class="bg-tertiary text-neutral flex flex-col justify-between gap-5 p-10 rounded max-w-lg">
+<section class="bg-primary text-accent flex flex-row flex-wrap justify-between min-h-screen p-2 sm:p-10 font-mono gap-y-10">
+    <div class="bg-tertiary text-neutral flex flex-col justify-between gap-5 p-2 sm:p-10 rounded max-w-lg">
         <h2 class="text-3xl text-center">Independent Probability</h2>
         <p class="text-justify text-base font-medium mt-10">
-            In independent probability, the probability of each event occurring is not affected by the outcomes of previous events. 
-            Each event is considered to be unrelated to the others in terms of probability. 
-            This is in contrast to "Dependent Probability" where the outcome of one event can influence the probability of subsequent events.
+            Independent probability is a concept where the likelihood of each event occurring is not influenced by the
+            outcomes of previous events. In other words, each event is considered unrelated to the others in terms of
+            probability. This stands in contrast to "Dependent Probability," where the outcome of one event can affect
+            the probability of subsequent events.
         </p>
-        <div class="text-justify text-basefont-medium mt-10">
+        <div class="text-justify text-base font-medium mt-10">
             <h6 class="text-lg">Examples</h6>
-            <p>Coin Tosses, Dice Rolls and Weather Conditions</p>
+            <p>Examples of independent probability include coin tosses, dice rolls, and weather conditions.</p>
         </div>
-        <p class="text-justify text-base font-medium mt-10">In these examples, the key idea is that the outcome of one event is not influenced by the outcomes of previous events, making them independent probabilities.</p>
-        <a [routerLink]="['/vip/calculator/probability/independent']" class="bg-primary text-accent hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
-            Go to Independent Probability calculator
+        <p class="text-justify text-base font-medium mt-10">In these examples, the key idea is that the outcome of one
+            event is not influenced by the outcomes of previous events, making them independent probabilities.</p>
+        <a [routerLink]="['/vip/calculator/probability/independent']"
+            class="bg-primary text-accent hover:bg-secondary text-primbg-primary font-bold py-2 px-4 m-5 rounded mr-4">
+            Go to Independent Probability Calculator
         </a>
     </div>
-    <a [routerLink]="['/vip']" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 mt-10 h-10 rounded mr-4 w-full">
-        Go back
+    <div class="bg-tertiary text-neutral flex flex-col justify-between gap-5 p-2 sm:p-10 rounded max-w-lg">
+        <h2 class="text-3xl text-center">Dependent Probability</h2>
+        <p class="text-justify text-base font-medium mt-10">
+            Dependent probability, also known as conditional probability, refers to the likelihood of an event occurring
+            given that another event has already occurred. In other words, the outcome of one event affects or influences
+            the probability of another event. It deals with situations where events are not independent and are
+            interconnected.
+        </p>
+        <div class="text-justify text-base font-medium mt-10">
+            <h6 class="text-lg">Examples</h6>
+            <p>An example of dependent probability is drawing cards from a deck without replacement.</p>
+        </div>
+        <a [routerLink]="['/vip/calculator/probability/independent']"
+            class="bg-primary text-accent hover:bg-secondary text-primbg-primary font-bold py-2 px-4 m-5 rounded mr-4">
+            Go to Dependent Probability Calculator
+        </a>
+    </div>
+    <div class="bg-tertiary text-neutral flex flex-col justify-between gap-5 p-2 sm:p-10 rounded max-w-lg">
+        <h2 class="text-3xl text-center">Permutation</h2>
+        <p class="text-justify text-base font-medium mt-10">
+            Straightforward permutation, often referred to as a "permutation," involves arranging objects in a specific
+            order where the order of arrangement matters. Each unique arrangement is considered a distinct permutation.
+        </p>
+        <div class="text-justify text-base font-medium mt-10">
+            <h6 class="text-lg">Examples</h6>
+            <p>One example of straightforward permutation is Arranging the digits 1, 2, 3 in a 3-digit number results in 6 permutations (123, 132, 213, 231, 312, 321)..</p>
+        </div>
+        <a [routerLink]="['/vip/calculator/probability/independent']"
+            class="bg-primary text-accent hover:bg-secondary text-primbg-primary font-bold py-2 px-4 m-5 rounded mr-4">
+            Go to Permutation Calculator
+        </a>
+    </div>
+    <a [routerLink]="['/vip']"
+        class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 mt-10 h-10 rounded mr-4 w-full">
+        Go back to VIP Section
     </a>
 </section>
