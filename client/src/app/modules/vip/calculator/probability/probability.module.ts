@@ -5,13 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { IndependentComponent } from './independent/independent.component';
 import { ProbabilityRoutingModule } from './probability-routing.module';
 import { ProbabilityPageComponent } from './probability-page/probability-page.component';
+import { DependentComponent } from './dependent/dependent.component';
+import { PermutationComponent } from './permutation/permutation.component';
 
 
 
 @NgModule({
   declarations: [
     IndependentComponent,
-    ProbabilityPageComponent
+    ProbabilityPageComponent,
+    DependentComponent,
+    PermutationComponent
   ],
   imports: [
     CommonModule,
