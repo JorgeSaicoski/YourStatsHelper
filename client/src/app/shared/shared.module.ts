@@ -4,6 +4,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavAdminComponent } from './nav-admin/nav-admin.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 
 
@@ -11,7 +13,9 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [
     NotFoundComponent,
     NavAdminComponent,
-    FooterComponent
+    FooterComponent,
+    TermsComponent,
+    PrivacyComponent
   ],
   exports:[
     NotFoundComponent,
