@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '@env';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
