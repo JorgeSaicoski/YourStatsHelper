@@ -15,7 +15,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports:[
     NotFoundComponent,
-    NavAdminComponent
+    NavAdminComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
