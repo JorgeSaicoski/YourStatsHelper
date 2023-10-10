@@ -2,160 +2,61 @@
   <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div>
-        <img src="" alt="bitcoin_wallet">
-        <p
-          class="mt-6 max-w-md text-center leading-relaxed sm:max-w-xs sm:text-left"
-        >
-          This is my Bitcoin Wallet. Please, if you do some donation, lets talk! Write me a email.
+        <img src="bitcoin_wallet_image_url" alt="Bitcoin Wallet Icon">
+        <p class="mt-6 max-w-md text-center leading-relaxed sm:max-w-xs sm:text-left">
+          This is my Bitcoin Wallet. If you would like to make a donation, please contact me via email.
         </p>
       </div>
 
-      <div
-        class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2"
-      >
-        <div class="text-center sm:text-left text-neutral">
-          <p class="text-lg font-medium">
-            About Us
-          </p>
+      <nav class="text-center sm:text-left text-neutral">
+        <p class="text-lg font-medium">About Us</p>
+        <ul class="mt-8 space-y-4 text-sm text-neutral">
+          <li><a class="transition" href="https://sarkis.dev/">Company Website</a></li>
+          <li><a class="transition" href="/">Welcome Page</a></li>
+          <li><a class="transition" href="/auth/login">Login Page</a></li>
+          <li><a class="transition" href="/calculator">Free Calculator</a></li>
+        </ul>
+      </nav>
 
-          <ul class="mt-8 space-y-4 text-sm text-neutral">
-            <li>
-              <a
-                class="transition "
-                href="https://sarkis.dev/"
-              >
-                Company Website
-              </a>
-            </li>
+      <nav class="text-center sm:text-left">
+        <p class="text-lg font-medium">Our Services</p>
+        <ul class="mt-8 space-y-4 text-sm">
+          <li>Wait for the MateShare Money Calculator</li>
+          <li>Portfolios</li>
+          <li>Bespoke Software for companies</li>
+        </ul>
+      </nav>
 
-            <li>
-              <a
-                class="transition"
-                [routerLink]="['/']"
-              >
-                Welcome Page
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="transition"
-                [routerLink]="['/auth/login']"
-              >
-                Login Page
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="transition"
-                [routerLink]="['/calculator']"
-              >
-                Free Calculator
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="text-center sm:text-left">
-          <p class="text-lg font-medium ">
-            Our Services
-          </p>
-
-          <ul class="mt-8 space-y-4 text-sm">
-            <li>
-              Wait the MateShare Money Calculator
-
-            </li>
-
-            <li>
-              Portfolios
-            </li>
-
-            <li>
-              Bespoke Software for companies
-            </li>
-
-          </ul>
-        </div>
-
-        <div class="text-center sm:text-left">
-          <p class="text-lg font-medium text-neutral">
-            Contact Us
-          </p>
-
-          <ul class="mt-8 space-y-4 text-sm">
-            <li class="flex flex-row justify-start items-center rounded-sm bg-secondary p-2 gap-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-
-                <span class="text-accent">
-                  jorge@sarkis.dev
-                </span>
-            </li>
-
-            <li class="flex flex-row justify-start items-center rounded-sm bg-secondary p-2">
-              <a
-                class="flex items-center justify-center gap-4"
-                href="https://www.linkedin.com/in/jorge-saicoski/"
-              >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                viewBox="0 0 24 24">
-                <path
-                  d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+      <address class="text-center sm:text-left">
+        <p class="text-lg font-medium text-neutral">Contact Us</p>
+        <ul class="mt-8 space-y-4 text-sm">
+          <li class="flex flex-row justify-start items-center rounded-sm bg-secondary p-2 gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-gray-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span class="text-accent">Email: <a href="mailto:jorge@sarkis.dev">jorge@sarkis.dev</a></span>
+          </li>
+          <li class="flex flex-row justify-start items-center rounded-sm bg-secondary p-2">
+            <a class="flex items-center justify-center gap-4" href="https://www.linkedin.com/in/jorge-saicoski/">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
+                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
               </svg>
-
-                <span class="text-accent"
-                  >Jorge Adriano Saicoski Sarkis</span
-                >
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+              <span class="text-accent">Jorge Adriano Saicoski Sarkis</span>
+            </a>
+          </li>
+        </ul>
+      </address>
     </div>
 
     <div class="mt-12 border-t border-gray-100 pt-6 dark:border-gray-800">
       <div class="text-center sm:flex sm:justify-between sm:text-left">
         <p class="text-sm text-gray-500 dark:text-gray-400">
           <span class="block sm:inline">All rights reserved.</span>
-
-          <a
-            class="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
-            href="/"
-          >
-            Terms & Conditions
-          </a>
-
+          <a class="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75" href="/">Terms & Conditions</a>
           <span>&middot;</span>
-
-          <a
-            class="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75"
-            href="/"
-          >
-            Privacy Policy
-          </a>
+          <a class="inline-block text-teal-600 underline transition hover:text-teal-600/75 dark:text-teal-500 dark:hover:text-teal-500/75" href="/">Privacy Policy</a>
         </p>
-
-        <p
-          class="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:order-first sm:mt-0"
-        >
-          &copy; 2023 YourStatsHelper
-        </p>
+        <p class="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:order-first sm:mt-0">&copy; 2023 YourStatsHelper</p>
       </div>
     </div>
   </div>
