@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { vipGuard } from './guards/vip.guard';
 import { noVipGuard } from './guards/noVip.guard ';
+import { TermsComponent } from './shared/terms/terms.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/vip/vip.module').then((m) => m.VipModule),
   },
+  { path: 'termsconditions', component: TermsComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
