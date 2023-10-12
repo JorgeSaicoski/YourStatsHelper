@@ -20,7 +20,7 @@
       Get Started
     </a>
   </div>
-  <section class="flex flex-col flex-wrap sm:flex-row gap-2 my-4 bg-tertiary w-full p-10">
+  <section class="flex flex-col flex-wrap sm:flex-row gap-2 my-4 justify-around bg-tertiary w-full p-10">
     <div class=" rounded-md m-2 p-3 flex flex-col justify-between gap-1 text-justify sm:w-96">
       <h2 class="text-3xl text-center font-extrabold">Unlock the World of Statistics</h2>
       <p>Need help acing an exam or solving statistics problems?</p>
@@ -50,6 +50,16 @@
         <li>If you encounter any difficulties, you can ask questions in our forum.</li>
         <li>If there's something you don't like, you can suggest improvements in the forum.</li>
       </ul>
+      <p>You will finally conquer your fear of numbers.</p>
+    </div>
+    <div class="rounded-md m-2 p-3 flex flex-col justify-between gap-1 text-justify sm:w-96">
+      <h2 class="text-3xl text-center font-extrabold">Don't wast time!</h2>
+      <p>Buy our trial for just 0.99 USD and test the software</p>
+      <a [routerLink]="['/auth/register']">Create a free account.</a>
+      <a [routerLink]="['/calculator']">Make some free calculations.</a>
+      <a [routerLink]="['/profile/vip-purchase']">Purchase the VIP account.</a>
+      <a [routerLink]="['/vip/calculator/probability']">Make some advanced calculations.</a>
+
       <p>You will finally conquer your fear of numbers.</p>
     </div>
   </section>

@@ -51,13 +51,7 @@ export class VipPurchaseComponent implements OnInit {
     }
   ]
 
-  currentPlan = signal<IPlan>({ 
-    id: 1,
-    name: "Month",
-    days: 30,
-    price: 5,
-    description: "Plan pre selected"
-  })
+  currentPlan = signal<IPlan>(this.plans[0])
 
   pricePerMonth = signal<Number>(5)
 

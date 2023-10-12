@@ -1,4 +1,4 @@
-<div class="min-h-screen min-w-full bg-gray-300">
+<div class="min-h-screen min-w-full bg-accent">
   <div class="container mx-auto px-4 py-12">
       <!-- Start of the message -->
       <div *ngIf="message.show" [ngClass]="{'bg-green-500': message.category === 'success', 'bg-red-500': message.category === 'err', 'bg-amber-800': message.category === 'cancel'}" class="flex flex-col justify-center items-center text-white p-4 min-h-[50vh] m-10 rounded-3xl">
@@ -11,8 +11,8 @@
   
       <!-- End of the message -->
 
-    <h1 class="text-3xl font-bold text-gray-800">Purchase a VIP Account</h1>
-    <p class="text-gray-600">Get access to exclusive features and benefits with a VIP account.</p>
+    <h1 class="text-3xl font-bold text-primary">Purchase a VIP Account</h1>
+    <p class="text-neutral">Get access to exclusive features and benefits with a VIP account.</p>
 
     <!-- Start of the form -->
     <form class="flex flex-col gap-4">
@@ -24,6 +24,7 @@
           <label class="flex flex-col min-h-[200px] w-full sm:w-80 py-4 px-10 border-2 bg-tertiary text-neutral border-gray-400 cursor-pointer ease-in duration-300" [for]="plan.id">
             <span class="text-xs font-semibold uppercase">{{plan.name}}</span>
             <span class="text-xl font-bold mt-2">${{plan.price}}</span>
+            <span class="text-xs font-semibold uppercase">{{plan.days}} days</span>
             <ul class="text-sm mt-2">
               <li>{{plan.description}}</li>
             </ul>
@@ -33,13 +34,13 @@
       <!-- End of plan selection (Angular component ends here) -->
 
       <!-- Start of purchase button -->
-      <div class="w-full flex justify-center">
-        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      <div class="w-full flex justify-center ">
+        <ngx-paypal [config]="payPalConfig" class="bg-neutral p-2 rounded-2xl"></ngx-paypal>
       </div>     
       <!-- End of purchase button -->
 
       <!-- Start of go back button -->
-      <a [routerLink]="['/home/main']" class="bg-neutral hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
+      <a [routerLink]="['/home/main']" class="bg-tertiary hover:bg-secondary text-primbg-primary font-bold py-2 px-4 rounded mr-4">
         Go back
       </a>
       <!-- End of go back button -->
