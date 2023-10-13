@@ -34,8 +34,10 @@
       <!-- End of plan selection (Angular component ends here) -->
 
       <!-- Start of purchase button -->
-      <div class="w-full flex justify-center ">
-        <ngx-paypal [config]="payPalConfig" class="bg-neutral p-2 rounded-2xl"></ngx-paypal>
+      <div class="flex justify-center flex-col items-center bg-neutral p-2 rounded-2xl w-[700px] mx-auto">
+        <p class="text-xs text-accent font-semibold uppercase">Plan selected: {{currentPlan().name}}</p>
+        <p class="text-xs text-accent font-semibold uppercase">Price: ${{currentPlan().price}}</p>
+        <ngx-paypal [config]="payPalConfig" class="w-full"></ngx-paypal>
       </div>     
       <!-- End of purchase button -->
 

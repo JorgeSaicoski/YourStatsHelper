@@ -53,14 +53,15 @@
       <p>You will finally conquer your fear of numbers.</p>
     </div>
     <div class="rounded-md m-2 p-3 flex flex-col justify-between gap-1 text-justify sm:w-96">
-      <h2 class="text-3xl text-center font-extrabold">Don't wast time!</h2>
-      <p>Buy our trial for just 0.99 USD and test the software</p>
-      <a [routerLink]="['/auth/register']">Create a free account.</a>
-      <a [routerLink]="['/calculator']">Make some free calculations.</a>
-      <a [routerLink]="['/profile/vip-purchase']">Purchase the VIP account.</a>
-      <a [routerLink]="['/vip/calculator/probability']">Make some advanced calculations.</a>
-
-      <p>You will finally conquer your fear of numbers.</p>
+      <h2 class="text-3xl text-center font-extrabold">Don't Waste Time!</h2>
+      <p>Try our software trial for just $0.99 and experience its power:</p>
+      <ul>
+        <li><a [routerLink]="['/auth/register']">Create a free account</a></li>
+        <li><a [routerLink]="['/calculator']">Perform free calculations</a></li>
+        <li><a [routerLink]="['/profile/vip-purchase']">Upgrade to VIP for exclusive benefits</a></li>
+        <li><a [routerLink]="['/vip/calculator/probability']">Unlock advanced calculation features</a></li>
+      </ul>
+      <p>Conquer your fear of numbers and unleash your potential!</p>
     </div>
   </section>
   <section class="flex flex-col flex-wrap sm:flex-row gap-2 my-4 justify-between">
